@@ -23,11 +23,12 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      ...pluginQuery.configs['flat/recommended'],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
-      ...pluginQuery.configs['flat/recommended']
+      'semi': ['error', 'always']
     },
   },
 )
