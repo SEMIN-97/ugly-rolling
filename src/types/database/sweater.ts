@@ -7,5 +7,5 @@ export interface Sweater {
   user: string;
   ornaments: number[];
   description: string;
-  sweaterType: SweaterType;
+  sweater_type: SweaterType;
 }
