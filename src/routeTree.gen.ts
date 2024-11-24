@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
+const SweatersIndexLazyImport = createFileRoute('/sweaters/')()
 
 // Create/Update Routes
 
@@ -25,6 +26,14 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const SweatersIndexLazyRoute = SweatersIndexLazyImport.update({
+  id: '/sweaters/',
+  path: '/sweaters/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/sweaters/index.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -37,6 +46,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/sweaters/': {
+      id: '/sweaters/'
+      path: '/sweaters'
+      fullPath: '/sweaters'
+      preLoaderRoute: typeof SweatersIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -44,32 +60,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/sweaters': typeof SweatersIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/sweaters': typeof SweatersIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/sweaters/': typeof SweatersIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/sweaters'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/sweaters'
+  id: '__root__' | '/' | '/sweaters/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  SweatersIndexLazyRoute: typeof SweatersIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  SweatersIndexLazyRoute: SweatersIndexLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -82,11 +103,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/sweaters/"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/sweaters/": {
+      "filePath": "sweaters/index.lazy.tsx"
     }
   }
 }
