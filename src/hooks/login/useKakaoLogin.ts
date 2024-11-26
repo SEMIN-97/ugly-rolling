@@ -5,24 +5,24 @@ export function useKakaoLogin() {
   const { mutate } = useCreateUsers();
 
   const handleKakaoLogin = () => {
-    window.Kakao.Auth.login({
+    (window as any).Kakao.Auth.login({
       success: function () {
         createUser();
       },
-      fail: function (error) {
+      fail: function (error: Error) {
         console.log(error)
       },
     })
   }
 
   const createUser = () => {
-    window.Kakao.API.request({
+    (window as any).Kakao.API.request({
       url: '/v2/user/me',
-      success: function (response) {
+      success: function (response: any) {
         const body: CreateUserRequest = { kakao_id: response.id };
         mutate(body);
       },
-      fail: function (error) {
+      fail: function (error: Error) {
         console.error(error);
       },
     })
