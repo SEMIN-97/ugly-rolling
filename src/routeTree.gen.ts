@@ -17,7 +17,8 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
-const SweatersIndexLazyImport = createFileRoute('/sweaters/')()
+const UsersIndexLazyImport = createFileRoute('/users/')()
+const LoginIndexLazyImport = createFileRoute('/login/')()
 
 // Create/Update Routes
 
@@ -27,13 +28,17 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const SweatersIndexLazyRoute = SweatersIndexLazyImport.update({
-  id: '/sweaters/',
-  path: '/sweaters/',
+const UsersIndexLazyRoute = UsersIndexLazyImport.update({
+  id: '/users/',
+  path: '/users/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/sweaters/index.lazy').then((d) => d.Route),
-)
+} as any).lazy(() => import('./routes/users/index.lazy').then((d) => d.Route))
+
+const LoginIndexLazyRoute = LoginIndexLazyImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/login/index.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
@@ -46,11 +51,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/sweaters/': {
-      id: '/sweaters/'
-      path: '/sweaters'
-      fullPath: '/sweaters'
-      preLoaderRoute: typeof SweatersIndexLazyImport
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/users/': {
+      id: '/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersIndexLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -60,37 +72,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/sweaters': typeof SweatersIndexLazyRoute
+  '/login': typeof LoginIndexLazyRoute
+  '/users': typeof UsersIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/sweaters': typeof SweatersIndexLazyRoute
+  '/login': typeof LoginIndexLazyRoute
+  '/users': typeof UsersIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
-  '/sweaters/': typeof SweatersIndexLazyRoute
+  '/login/': typeof LoginIndexLazyRoute
+  '/users/': typeof UsersIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sweaters'
+  fullPaths: '/' | '/login' | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sweaters'
-  id: '__root__' | '/' | '/sweaters/'
+  to: '/' | '/login' | '/users'
+  id: '__root__' | '/' | '/login/' | '/users/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  SweatersIndexLazyRoute: typeof SweatersIndexLazyRoute
+  LoginIndexLazyRoute: typeof LoginIndexLazyRoute
+  UsersIndexLazyRoute: typeof UsersIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  SweatersIndexLazyRoute: SweatersIndexLazyRoute,
+  LoginIndexLazyRoute: LoginIndexLazyRoute,
+  UsersIndexLazyRoute: UsersIndexLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -104,14 +121,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/sweaters/"
+        "/login/",
+        "/users/"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
     },
-    "/sweaters/": {
-      "filePath": "sweaters/index.lazy.tsx"
+    "/login/": {
+      "filePath": "login/index.lazy.tsx"
+    },
+    "/users/": {
+      "filePath": "users/index.lazy.tsx"
     }
   }
 }
