@@ -9,6 +9,7 @@ interface InputProps {
 }
 
 export const Input: FC<InputProps> = ({ placeholder, maxLength, value, onChange, validate = () => true }) => {
+  const currentLength = value.length;
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const targetValue = e.target.value;
     if (validate(targetValue)) {
@@ -16,11 +17,16 @@ export const Input: FC<InputProps> = ({ placeholder, maxLength, value, onChange,
     }
   };
 
-  return (<input
-    type='text'
-    placeholder={ placeholder }
-    maxLength={ maxLength }
-    value={ value }
-    onChange={ handleChange }
-  ></input>);
+  return (
+    <div>
+      <input
+        type='text'
+        placeholder={ placeholder }
+        maxLength={ maxLength }
+        value={ value }
+        onChange={ handleChange }
+      ></input>
+      <p>{ currentLength }/{ maxLength }</p>
+    </div>
+  );
 };
