@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './Toast.module.scss';
 
-interface ToastProps {
+export interface ToastProps {
   message: string;
 }
 
