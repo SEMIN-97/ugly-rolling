@@ -1,4 +1,5 @@
 import { ChangeEvent, FC } from "react";
+import styles from './Input.module.scss';
 
 interface InputProps {
   placeholder: string;
@@ -18,15 +19,16 @@ export const Input: FC<InputProps> = ({ placeholder, maxLength, value, onChange,
   };
 
   return (
-    <div>
+    <div className={ styles.inputContainer }>
       <input
+        className={ styles.input }
         type='text'
         placeholder={ placeholder }
         maxLength={ maxLength }
         value={ value }
         onChange={ handleChange }
       ></input>
-      <p>{ currentLength }/{ maxLength }</p>
+      <p className={ styles.length }>{ currentLength }/{ maxLength }</p>
     </div>
   );
 };
