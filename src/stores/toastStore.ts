@@ -12,16 +12,41 @@ interface ToastState {
 
 export const useToastStore = create<ToastState>(set => ({
   toasts: [],
-  addToast: (toast: ToastProps) => set(state => addToast(state, toast))
+  addToast: (toast: ToastProps) => {
+    const newToast = generateToast(toast);
+
+    set(state => addToast(state, newToast));
+
+    const timeout = setTimeout(() => {
+      set(state => deleteToast(state, newToast.id));
+    }, newToast.duration);
+
+    return () => clearTimeout(timeout);
+  }
 }));
 
-const addToast = (state: ToastState, toast: ToastProps) => {
+const generateToast = (toast: ToastProps): Toast => {
   const id = Date.now().toString();
+  const duration = toast.duration || 1000;
+  
+  return {
+    ...toast,
+    id,
+    duration
+  };
+};
+
+const addToast = (state: ToastState, toast: Toast) => ({
+  toasts: [
+    ...state.toasts,
+    toast
+  ],
+});
+
+const deleteToast = (state: ToastState, id: string) => {
+  const filteredToasts = state.toasts.filter(toast => toast.id !== id);
 
   return {
-    toasts: [
-      ...state.toasts,
-      { ...toast, id }
-    ],
+    toasts: filteredToasts
   };
 };

@@ -3,6 +3,7 @@ import styles from './Toast.module.scss';
 
 export interface ToastProps {
   message: string;
+  duration?: number;
 }
 
 export const Toast: FC<ToastProps> = ({ message }) => {
