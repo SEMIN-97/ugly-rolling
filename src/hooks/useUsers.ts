@@ -5,8 +5,8 @@ import { CreateUserRequest } from "../types/api";
 
 export const useFetchUsers = () => {
   return useQuery<User[], Error>({ queryKey: ['users'], queryFn: fetchUsers });
-}
+};
 
 export const useCreateUsers = () => {
-  return useMutation<User, Error, CreateUserRequest>({ mutationFn: createUser })
-}
+  return useMutation<User, Error, CreateUserRequest>({ mutationFn: createUser });
+};

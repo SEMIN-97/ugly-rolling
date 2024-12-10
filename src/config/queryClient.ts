@@ -7,4 +7,4 @@ export const queryClient = new QueryClient({
       retry: 3
     }
   }
-})
+});

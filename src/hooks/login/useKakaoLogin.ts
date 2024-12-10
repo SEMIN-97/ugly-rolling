@@ -10,10 +10,10 @@ export function useKakaoLogin() {
         createUser();
       },
       fail: function (error: Error) {
-        console.log(error)
+        console.log(error);
       },
-    })
-  }
+    });
+  };
 
   const createUser = () => {
     (window as any).Kakao.API.request({
@@ -25,8 +25,8 @@ export function useKakaoLogin() {
       fail: function (error: Error) {
         console.error(error);
       },
-    })
-  }
+    });
+  };
 
-  return { handleKakaoLogin }
+  return { handleKakaoLogin };
 }
