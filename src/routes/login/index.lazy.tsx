@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import kakaoLogin from '../../assets/login/kakao-login.png'
+import kakaoLogin from '../../assets/images/login/kakao-login.png'
 import { useKakaoInit, useKakaoLogin } from "../../hooks/login";
 
 export const Route = createLazyFileRoute('/login/')({
