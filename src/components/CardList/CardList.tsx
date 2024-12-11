@@ -11,16 +11,16 @@ export const CardList: FC<CardListProp> = ({ count, activeIndex, onClick }) => {
   const cards = Array.from({ length: count });
 
   return (
-    <div className={styles.cardList}>
-      {cards.map((_, index) => (
+    <div className={ styles.cardList }>
+      { cards.map((_, index) => (
         <div
-          key={index}
-          className={`${styles.card} ${activeIndex === index ? styles.active : ''}`}
-          onClick={() => onClick(index)}
+          key={ index }
+          className={ `${ styles.card } ${ activeIndex === index ? styles.active : '' }` }
+          onClick={ () => onClick(index) }
         >
-          Card {index + 1}
+          Card { index + 1 }
         </div>
-      ))}
+      )) }
     </div>
   );
 };
