@@ -1,4 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
+import { CommonLayout } from '../layouts/CommonLayout.tsx';
 
 export const Route = createLazyFileRoute('/')({
   component: Index
@@ -6,6 +7,8 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
   return (
-    <h1>Index Page</h1>
+    <CommonLayout>
+      <h1>Index Page</h1>
+    </CommonLayout>
   );
 }

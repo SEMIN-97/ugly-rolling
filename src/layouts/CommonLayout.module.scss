@@ -1,0 +1,8 @@
+@use '../styles/variables' as *;
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  background-color: $color-white;
+  padding: $spacing-6 $spacing-4;
+}
