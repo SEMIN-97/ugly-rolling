@@ -7,7 +7,6 @@ interface Validation {
 
 interface InputProps {
   placeholder: string;
-  maxLength: number;
   value: string;
   onChange: (value: string) => void;
   validate: (value: string) => Validation;
