@@ -1,0 +1,19 @@
+@use 'src/styles/variables';
+
+.title {
+  font-weight: 400;
+  font-size: variables.$font-title-md;
+}
+
+.subTitle {
+  font-size: variables.$font-body-lg;
+}
+
+.description {
+  font-size: variables.$font-body-md;
+  color: variables.$color-gray-700;
+}
+
+.bold {
+  font-weight: 700;
+}
