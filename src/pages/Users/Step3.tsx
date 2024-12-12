@@ -21,12 +21,11 @@ export const Step3: FC<Step3Props> = ({ description, setDescription, handleNextS
         value={ description }
         onChange={ (value) => setDescription(value) }
         maxLength={ 100 }
-        height={ 50 }
+        height={ 150 }
       ></Textarea>
       <Button
         label='나만의 롤링페이퍼 만들기'
         onClick={ handleNextStep }
-        isDisabled={ !description }
       />
     </>
   );
