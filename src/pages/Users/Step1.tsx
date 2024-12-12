@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Input } from "../../components/Input/Input.tsx";
 import { Button } from "../../components/Button/Button.tsx";
 import { Title } from "../../components/Title/Title.tsx";
+import styles from './Step1.module.scss';
 
 interface Step1Props {
   nickname: string;
@@ -15,6 +16,7 @@ export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep })
       <Title bold>반가워요! 🎅</Title>
       <Title bold>친구들에게 어떻게 불리나요?</Title>
       <Input
+        className={ styles.input }
         placeholder='닉네임을 입력해주세요'
         value={ nickname }
         onChange={ setNickname }
@@ -26,5 +28,5 @@ export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep })
         isDisabled={ !nickname }
       />
     </>
-  )
-}
+  );
+};

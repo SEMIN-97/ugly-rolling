@@ -1,0 +1,5 @@
+@use 'src/styles/variables';
+
+.input {
+  padding: variables.$spacing-3 0;
+}
