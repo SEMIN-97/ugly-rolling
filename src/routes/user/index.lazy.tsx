@@ -46,7 +46,7 @@ function User() {
 
   return (
     <CommonLayout>
-      <div className={ styles.user }>{ renderUser() }</div>
+      <div className={ styles.userContainer }>{ renderUser() }</div>
     </CommonLayout>
   );
 }
