@@ -7,15 +7,17 @@ import useUserStore from "../../stores/userStore.ts";
 import { Step1 } from "../../pages/Users/Step1.tsx";
 import { Step2 } from "../../pages/Users/Step2.tsx";
 import { Step3 } from "../../pages/Users/Step3.tsx";
+import styles from './index.lazy.module.scss';
+import { CommonLayout } from "../../layouts/CommonLayout.tsx";
 
-export const Route = createLazyFileRoute('/users/')({
-  component: Users,
+export const Route = createLazyFileRoute('/user/')({
+  component: User,
 });
 
-function Users() {
+function User() {
   // TODO 전역 상태값으로 로그인 중인지 아닌지 확인 후 로그인 안되어있으면 로그인페이지로 튕기는 작업 필요
   const [nickname, setNickname] = useState('');
-  const [sweaterType, setSweaterType] = useState(SweaterType.None);
+  const [sweaterType, setSweaterType] = useState(SweaterType.Red);
   const [description, setDescription] = useState('');
   const [step, setStep] = useState(1);
 
@@ -26,13 +28,12 @@ function Users() {
   const handleNextStep = () => step < 3 ? setStep(step + 1) : handleSubmit();
   const handleSubmit = () => {
     const user: UpdateUserRequest = { nickname, sweater_type: sweaterType, description };
-    console.log(id, user);
+    // TODO 유저 정보 업데이트에서 에러 날 시 navigate하지 않고 toast 알람 띄우기
     mutate({ id, user });
-// TODO 다음페이지로 네비게이트
-//     navigate({ to: '/sweater' });
+    navigate({ to: '/sweater' });
   };
 
-  const renderUsers = () => {
+  const renderUser = () => {
     switch (step) {
       case 1:
         return <Step1 nickname={ nickname } setNickname={ setNickname } handleNextStep={ handleNextStep } />;
@@ -43,5 +44,9 @@ function Users() {
     }
   };
 
-  return (<div>{ renderUsers() }</div>);
+  return (
+    <CommonLayout>
+      <div className={ styles.user }>{ renderUser() }</div>
+    </CommonLayout>
+  );
 }
