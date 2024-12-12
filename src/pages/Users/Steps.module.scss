@@ -1,11 +1,11 @@
 @use 'src/styles/variables';
 
-.step1Container {
+.stepContainer {
   height: 100%;
   display: flex;
   flex-direction: column;
 
-  .step1Body {
+  .stepBody {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -14,6 +14,10 @@
 
   .inputContainer {
     padding: variables.$spacing-5 0;
+  }
+
+  .subTitleContainer {
+    padding: variables.$spacing-5 0 variables.$spacing-4;
   }
 
   .buttonContainer {
