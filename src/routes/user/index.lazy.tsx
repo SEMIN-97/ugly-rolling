@@ -30,7 +30,7 @@ function User() {
     const user: UpdateUserRequest = { nickname, sweater_type: sweaterType, description };
     // TODO 유저 정보 업데이트에서 에러 날 시 navigate하지 않고 toast 알람 띄우기
     mutate({ id, user });
-    navigate({ to: '/sweater' });
+    navigate({ to: '/sweaters' });
   };
 
   const renderUser = () => {
