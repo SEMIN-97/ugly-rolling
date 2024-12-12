@@ -1,5 +1,6 @@
 @use 'src/styles/variables';
 
 .user {
-  padding-top: variables.$spacing-7;
+  height: 100%;
+  margin: auto 0;
 }
