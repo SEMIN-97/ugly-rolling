@@ -1,5 +1,5 @@
 import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SweaterType } from "../../types/enum";
 import { useUpdateUser } from "../../hooks/useUsers.ts";
 import { UpdateUserRequest } from "../../types/api";
@@ -9,28 +9,40 @@ import { Step2 } from "../../pages/Users/Step2.tsx";
 import { Step3 } from "../../pages/Users/Step3.tsx";
 import styles from './index.lazy.module.scss';
 import { CommonLayout } from "../../layouts/CommonLayout.tsx";
+import { useToastStore } from "../../stores/toastStore.ts";
 
 export const Route = createLazyFileRoute('/user/')({
   component: User,
 });
 
 function User() {
-  // TODO 전역 상태값으로 로그인 중인지 아닌지 확인 후 로그인 안되어있으면 로그인페이지로 튕기는 작업 필요
+  const id = useUserStore(state => state.id) as number;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!id) {
+      navigate({ to: '/login' });
+    }
+  }, [id]);
+
   const [nickname, setNickname] = useState('');
   const [sweaterType, setSweaterType] = useState(SweaterType.Red);
   const [description, setDescription] = useState('');
   const [step, setStep] = useState(1);
 
-  const { mutate } = useUpdateUser();
-  const id = useUserStore(state => state.id) as number;
-  const navigate = useNavigate();
+  const { mutateAsync } = useUpdateUser();
+  const { addToast } = useToastStore();
 
   const handleNextStep = () => step < 3 ? setStep(step + 1) : handleSubmit();
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const user: UpdateUserRequest = { nickname, sweater_type: sweaterType, description };
-    // TODO 유저 정보 업데이트에서 에러 날 시 navigate하지 않고 toast 알람 띄우기
-    mutate({ id, user });
-    navigate({ to: '/sweaters' });
+
+    try {
+      await mutateAsync({ id, user });
+      navigate({ to: '/sweaters' });
+    } catch (_) {
+      addToast({ message: '유저 정보 업데이트에 실패했습니다.', duration: 2000 });
+    }
   };
 
   const renderUser = () => {
