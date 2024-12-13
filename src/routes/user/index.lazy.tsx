@@ -39,7 +39,7 @@ function User() {
 
     try {
       await mutateAsync({ id, user });
-      navigate({ to: '/sweaters' });
+      navigate({ to: '/sweater' });
     } catch (_) {
       addToast({ message: '유저 정보 업데이트에 실패했습니다.', duration: 2000 });
     }

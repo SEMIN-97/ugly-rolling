@@ -4,6 +4,12 @@ import { CreateUserRequest, UpdateUserRequest } from "../types/api";
 
 const TABLE_NAME = 'users';
 
+export const fetchUserByKakaoId = async (kakaoId: number): Promise<User | null> => {
+  const { data, error } = await supabase.from(TABLE_NAME).select('*').eq('kakao_id', kakaoId).single();
+  if (error) throw new Error();
+  return data;
+};
+
 export const createUser = async (user: CreateUserRequest): Promise<User> => {
   const { data, error } = await supabase.from(TABLE_NAME).upsert(user, { onConflict: 'kakao_id' }).select().single();
   if (error) throw new Error(error.message);
