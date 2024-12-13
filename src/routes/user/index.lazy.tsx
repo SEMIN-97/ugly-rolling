@@ -23,7 +23,7 @@ function User() {
     if (!id) {
       navigate({ to: '/login' });
     }
-  }, [id]);
+  }, [id, navigate]);
 
   const [nickname, setNickname] = useState('');
   const [sweaterType, setSweaterType] = useState(SweaterType.Red);
@@ -40,8 +40,9 @@ function User() {
     try {
       await mutateAsync({ id, user });
       navigate({ to: '/sweater' });
-    } catch (_) {
+    } catch (e) {
       addToast({ message: '유저 정보 업데이트에 실패했습니다.', duration: 2000 });
+      console.log(e);
     }
   };
 

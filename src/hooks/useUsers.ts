@@ -19,4 +19,4 @@ export const useCreateUsers = () => {
 
 export const useUpdateUser = () => {
   return useMutation<User, Error, { id: number, user: UpdateUserRequest }>({ mutationFn: updateUser });
-}
+};
