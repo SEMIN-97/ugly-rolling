@@ -3,7 +3,7 @@ import { createUser, fetchUserByKakaoId, updateUser } from "../api";
 import { User } from "../types/database";
 import { CreateUserRequest, UpdateUserRequest } from "../types/api";
 
-export const useFetchUsers = (kakaoId: number) => {
+export const useFetchUser = (kakaoId: number) => {
   return useQuery<User | null, Error>({
     queryKey: ['user', kakaoId],
     queryFn: ({ queryKey }) => {
