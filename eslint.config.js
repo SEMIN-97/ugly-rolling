@@ -24,6 +24,16 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       ...pluginQuery.configs['flat/recommended'],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          vars: 'all', // 모든 변수 검사
+          args: 'after-used', // 사용하지 않는 매개변수 경고
+          ignoreRestSiblings: true, // 나머지 연산자 무시
+          varsIgnorePattern: '^_', // _로 시작하는 변수 무시
+          argsIgnorePattern: '^_', // _로 시작하는 매개변수 무시
+        },
+      ],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
