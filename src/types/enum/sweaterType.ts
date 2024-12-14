@@ -1,5 +1,6 @@
 export enum SweaterType {
-  Red = 0,
-  Green = 1,
-  Yellow = 2
+  Green = 'green',
+  Orange = 'orange',
+  Pink = 'pink',
+  White = 'white'
 }
