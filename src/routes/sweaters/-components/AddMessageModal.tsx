@@ -8,25 +8,30 @@ import { SelectOrnament } from './SelectOrnament.tsx';
 import { InputMessage } from './InputMessage.tsx';
 
 interface AddOrnamentModalProps {
-  onClose?: () => void;
+  onClose: () => void;
 }
 
-export const AddMessageModal: FC = ({
+export const AddMessageModal: FC<AddOrnamentModalProps> = ({
   onClose
 }: AddOrnamentModalProps) => {
-  const { ornament, setOrnament } = useMessageStore();
+  const { ornament, setOrnament, setMessage } = useMessageStore();
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
+  const [messageInput, setMessageInput] = useState<string>('');
 
   const handleClickNextButton = () => {
     setOrnament(selectedOrnament);
   };
 
   const handleSubmit = () => {
-    console.log('handleSubmit');
+    setMessage(messageInput);
+    onClose();
   };
 
   const bodyContent = ornament ? (
-    <InputMessage />
+    <InputMessage
+      messageInput={messageInput}
+      setMessageInput={setMessageInput}
+    />
   ) : (
     <SelectOrnament
       selectedOrnament={selectedOrnament}
