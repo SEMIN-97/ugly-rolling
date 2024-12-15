@@ -14,11 +14,15 @@ interface AddOrnamentModalProps {
 export const AddMessageModal: FC = ({
   onClose
 }: AddOrnamentModalProps) => {
-  const { ornament } = useMessageStore();
+  const { ornament, setOrnament } = useMessageStore();
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
 
-  const onClick = () => {
-    console.log('');
+  const handleClickNextButton = () => {
+    setOrnament(selectedOrnament);
+  };
+
+  const handleSubmit = () => {
+    console.log('handleSubmit');
   };
 
   const bodyContent = ornament ? (
@@ -30,15 +34,16 @@ export const AddMessageModal: FC = ({
     />
   );
 
+  const footerContent = ornament ? (
+    <Button label="작성 완료" onClick={handleSubmit} />
+  ) : (
+    <Button label="다음" onClick={handleClickNextButton} />
+  );
+
   return (
     <Modal
       body={bodyContent}
-      footer={
-        <Button
-          label={ornament ? '작성 완료' : '다음'}
-          onClick={onClick}
-        />
-      }
+      footer={footerContent}
       onClose={onClose}
     />
   );
