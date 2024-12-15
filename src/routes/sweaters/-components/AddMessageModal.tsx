@@ -14,7 +14,7 @@ interface AddOrnamentModalProps {
 export const AddMessageModal: FC<AddOrnamentModalProps> = ({
   onClose
 }: AddOrnamentModalProps) => {
-  const { ornament, setOrnament, setMessage } = useMessageStore();
+  const { ornament, setOrnament, setMessage, receiver } = useMessageStore();
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
   const [messageInput, setMessageInput] = useState<string>('');
 
@@ -31,6 +31,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
     <InputMessage
       messageInput={messageInput}
       setMessageInput={setMessageInput}
+      receiver={receiver}
     />
   ) : (
     <SelectOrnament
