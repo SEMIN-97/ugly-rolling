@@ -3,7 +3,7 @@ import { OrnamentType } from '../../../types/enum';
 import { ornamentList } from '../../../models/ornamentList.ts';
 import styles from './AddMessageModal.module.scss';
 
-interface SelectOrnamentProps {
+interface SelectOrnamentStepProps {
   selectedOrnament: OrnamentType;
   setSelectedOrnament: (ornament: OrnamentType) => void;
 }
@@ -12,7 +12,7 @@ interface OrnamentItemProps {
   item: OrnamentType;
 }
 
-export const SelectOrnament: FC<SelectOrnamentProps> = ({
+export const SelectOrnamentStep: FC<SelectOrnamentStepProps> = ({
   selectedOrnament,
   setSelectedOrnament
 }) => {

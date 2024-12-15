@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { Textarea } from '../../../components/Textarea/Textarea.tsx';
 
-interface InputMessageProps {
+interface InputMessageStepProps {
   receiver: string;
   messageInput: string;
   setMessageInput: (message: string) => void;
 }
 
-export const InputMessage: FC<InputMessageProps> = ({
+export const InputMessageStep: FC<InputMessageStepProps> = ({
   receiver,
   messageInput,
   setMessageInput

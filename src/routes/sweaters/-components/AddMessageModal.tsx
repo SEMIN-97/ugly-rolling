@@ -4,8 +4,8 @@ import { Button } from '../../../components/Button/Button.tsx';
 import { OrnamentType } from '../../../types/enum';
 import { ornamentList } from '../../../models/ornamentList.ts';
 import { useMessageStore } from '../-stores/-messageStore.ts';
-import { SelectOrnament } from './SelectOrnament.tsx';
-import { InputMessage } from './InputMessage.tsx';
+import { SelectOrnamentStep } from './SelectOrnamentStep.tsx';
+import { InputMessageStep } from './InputMessageStep.tsx';
 
 interface AddOrnamentModalProps {
   onClose: () => void;
@@ -28,13 +28,13 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
   };
 
   const bodyContent = ornament ? (
-    <InputMessage
+    <InputMessageStep
       messageInput={messageInput}
       setMessageInput={setMessageInput}
       receiver={receiver}
     />
   ) : (
-    <SelectOrnament
+    <SelectOrnamentStep
       selectedOrnament={selectedOrnament}
       setSelectedOrnament={setSelectedOrnament}
     />
