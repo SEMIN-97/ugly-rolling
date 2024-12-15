@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
 import { Button } from '../../components/Button/Button.tsx';
+import { AddMessageModal } from './-components/AddMessageModal.tsx';
 import styles from './index.module.scss';
 
 export const Route = createLazyFileRoute('/sweaters/$id')({
@@ -8,23 +10,31 @@ export const Route = createLazyFileRoute('/sweaters/$id')({
 });
 
 function RouteComponent() {
-  const onClick = () => {};
+  const [isShowAddModal, setIsShowAddModal] = useState(false);
+  const toggleShowAddModal = () => {
+    setIsShowAddModal(prev => !prev);
+  };
 
   return (
-    <CommonLayout>
-      <div className={styles.pageContainer}>
-        <div className={styles.titleContainer}>
-          <h1>닉네임님의 스웨터</h1>
-          <p className={styles.description}>
-            <span className={styles.badge}>WISH</span>
-            <span>닉네임님의 한마디</span>
-          </p>
-        </div>
-        <div className={styles.sweaterContainer}>
+    <>
+      <CommonLayout>
+        <div className={styles.pageContainer}>
+          <div className={styles.titleContainer}>
+            <h1>닉네임님의 스웨터</h1>
+            <p className={styles.description}>
+              <span className={styles.badge}>WISH</span>
+              <span>닉네임님의 한마디</span>
+            </p>
+          </div>
+          <div className={styles.sweaterContainer}>
 
+          </div>
+          <Button label="롤링페이퍼 남기기" onClick={toggleShowAddModal}/>
         </div>
-        <Button label="롤링페이퍼 남기기" onClick={onClick}/>
-      </div>
-    </CommonLayout>
+      </CommonLayout>
+      {
+        isShowAddModal && <AddMessageModal onClose={toggleShowAddModal}/>
+      }
+    </>
   );
 }
