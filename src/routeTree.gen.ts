@@ -18,8 +18,8 @@ import { Route as rootRoute } from './routes/__root'
 
 const IndexLazyImport = createFileRoute('/')()
 const UserIndexLazyImport = createFileRoute('/user/')()
-const SweaterIndexLazyImport = createFileRoute('/sweater/')()
 const LoginIndexLazyImport = createFileRoute('/login/')()
+const SweatersIdLazyImport = createFileRoute('/sweaters/$id')()
 
 // Create/Update Routes
 
@@ -35,17 +35,17 @@ const UserIndexLazyRoute = UserIndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/user/index.lazy').then((d) => d.Route))
 
-const SweaterIndexLazyRoute = SweaterIndexLazyImport.update({
-  id: '/sweater/',
-  path: '/sweater/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/sweater/index.lazy').then((d) => d.Route))
-
 const LoginIndexLazyRoute = LoginIndexLazyImport.update({
   id: '/login/',
   path: '/login/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login/index.lazy').then((d) => d.Route))
+
+const SweatersIdLazyRoute = SweatersIdLazyImport.update({
+  id: '/sweaters/$id',
+  path: '/sweaters/$id',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/sweaters/$id.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
@@ -58,18 +58,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/sweaters/$id': {
+      id: '/sweaters/$id'
+      path: '/sweaters/$id'
+      fullPath: '/sweaters/$id'
+      preLoaderRoute: typeof SweatersIdLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/login/': {
       id: '/login/'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginIndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/sweater/': {
-      id: '/sweater/'
-      path: '/sweater'
-      fullPath: '/sweater'
-      preLoaderRoute: typeof SweaterIndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/user/': {
@@ -86,46 +86,46 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/sweaters/$id': typeof SweatersIdLazyRoute
   '/login': typeof LoginIndexLazyRoute
-  '/sweater': typeof SweaterIndexLazyRoute
   '/user': typeof UserIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/sweaters/$id': typeof SweatersIdLazyRoute
   '/login': typeof LoginIndexLazyRoute
-  '/sweater': typeof SweaterIndexLazyRoute
   '/user': typeof UserIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/sweaters/$id': typeof SweatersIdLazyRoute
   '/login/': typeof LoginIndexLazyRoute
-  '/sweater/': typeof SweaterIndexLazyRoute
   '/user/': typeof UserIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/sweater' | '/user'
+  fullPaths: '/' | '/sweaters/$id' | '/login' | '/user'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/sweater' | '/user'
-  id: '__root__' | '/' | '/login/' | '/sweater/' | '/user/'
+  to: '/' | '/sweaters/$id' | '/login' | '/user'
+  id: '__root__' | '/' | '/sweaters/$id' | '/login/' | '/user/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  SweatersIdLazyRoute: typeof SweatersIdLazyRoute
   LoginIndexLazyRoute: typeof LoginIndexLazyRoute
-  SweaterIndexLazyRoute: typeof SweaterIndexLazyRoute
   UserIndexLazyRoute: typeof UserIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  SweatersIdLazyRoute: SweatersIdLazyRoute,
   LoginIndexLazyRoute: LoginIndexLazyRoute,
-  SweaterIndexLazyRoute: SweaterIndexLazyRoute,
   UserIndexLazyRoute: UserIndexLazyRoute,
 }
 
@@ -140,19 +140,19 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/sweaters/$id",
         "/login/",
-        "/sweater/",
         "/user/"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
     },
+    "/sweaters/$id": {
+      "filePath": "sweaters/$id.lazy.tsx"
+    },
     "/login/": {
       "filePath": "login/index.lazy.tsx"
-    },
-    "/sweater/": {
-      "filePath": "sweater/index.lazy.tsx"
     },
     "/user/": {
       "filePath": "user/index.lazy.tsx"

@@ -1,0 +1,22 @@
+@use '../../../styles/variables' as *;
+
+.ornamentList {
+  display: flex;
+  gap: $spacing-4;
+
+  > li {
+    width: 100px;
+    height: 100px;
+    background-color: lightgray;
+
+    &.selected {
+      background: gray;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
