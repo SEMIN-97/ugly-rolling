@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Textarea } from '../../../components/Textarea/Textarea.tsx';
+import { SubTitle } from '../../../components/Title/Title.tsx';
 
 interface InputMessageStepProps {
   receiver: string;
@@ -18,7 +19,7 @@ export const InputMessageStep: FC<InputMessageStepProps> = ({
 
   return (
     <>
-      <p>메시지를 작성해 주세요.</p>
+      <SubTitle bold>메시지를 작성해 주세요.</SubTitle>
       <Textarea
         value={messageInput}
         onChange={handleMessageChange}
