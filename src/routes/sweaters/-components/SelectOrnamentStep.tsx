@@ -18,13 +18,13 @@ export const SelectOrnamentStep: FC<SelectOrnamentStepProps> = ({
   };
 
   return (
-    <>
+    <div className={styles.modalContents}>
       <SubTitle bold>장식을 골라주세요.</SubTitle>
-      <ul className={styles.ornamentList}>
+      <ul>
         {
           <CardList imagePath="ornaments/" cards={ornamentList as string[]} onClick={handleOrnamentClick} />
         }
       </ul>
-    </>
+    </div>
   );
 };
