@@ -1,31 +1,24 @@
 import { ChangeEvent, FC } from "react";
 import styles from './Input.module.scss';
 
-interface Validation {
-  maxLength?: number;
-}
-
 interface InputProps {
   placeholder: string;
   value: string;
+  maxLength: number;
+  isValid: boolean;
+  errorMessage: string;
   onChange: (value: string) => void;
-  validate: (value: string) => Validation;
 }
 
-export const Input: FC<InputProps> = ({ placeholder, value, onChange, validate = () => true }) => {
-  const { maxLength } = validate(value) as Validation;
-
+export const Input: FC<InputProps> = ({ placeholder, value, maxLength, isValid, errorMessage, onChange }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const targetValue = e.target.value;
-    if (validate(targetValue)) {
-      onChange(targetValue);
-    }
+    onChange(e.target.value);
   };
 
   return (
     <div className={ styles.inputContainer }>
       <input
-        className={ styles.input }
+        className={ `${ styles.input } ${ !isValid ? styles.error : '' }` }
         type='text'
         placeholder={ placeholder }
         maxLength={ maxLength }
@@ -37,6 +30,7 @@ export const Input: FC<InputProps> = ({ placeholder, value, onChange, validate =
           { value.length }/{ maxLength }
         </p>
       ) }
+      { !isValid && <p className={ styles.errorMessage }>{ errorMessage }</p> }
     </div>
   );
 };
