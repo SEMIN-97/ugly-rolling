@@ -1,13 +1,18 @@
 import { create } from "zustand";
 
-interface UserState {
+interface User {
   id: number | null;
-  setId: (id: number) => void;
+  nickname: string | null;
+}
+
+interface UserState {
+  user: User;
+  setUser: (user: Partial<User>) => void;
 }
 
 const useUserStore = create<UserState>((set) => ({
-  id: null,
-  setId: (id: number) => set({ id })
+  user: { id: null, nickname: null },
+  setUser: (user: Partial<User>) => set((state) => ({ user: { ...state.user, ...user } })),
 }));
 
 export default useUserStore;

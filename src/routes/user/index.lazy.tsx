@@ -16,7 +16,7 @@ export const Route = createLazyFileRoute('/user/')({
 });
 
 function User() {
-  const id = useUserStore(state => state.id) as number;
+  const id = useUserStore(state => state.user?.id) as number;
   const navigate = useNavigate();
 
   useEffect(() => {

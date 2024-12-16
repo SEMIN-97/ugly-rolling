@@ -7,7 +7,7 @@ import { fetchUserByKakaoId } from "../../api";
 export function useKakaoLogin() {
   const navigate = useNavigate();
   const { mutateAsync } = useCreateUsers();
-  const setId = useUserStore(state => state.setId);
+  const setUser = useUserStore(state => state.setUser);
 
   const handleKakaoLogin = () => {
     (window as any).Kakao.Auth.login({
@@ -28,7 +28,7 @@ export function useKakaoLogin() {
     try {
       const existingUser = await fetchUserByKakaoId(response.id);
       if (existingUser) {
-        setId(existingUser.id);
+        setUser({ id: existingUser.id, nickname: existingUser.nickname || null });
 
         if (!existingUser.nickname) {
           await navigate({ to: '/user' });
@@ -48,7 +48,7 @@ export function useKakaoLogin() {
     try {
       const body: CreateUserRequest = { kakao_id: kakaoId };
       const user = await mutateAsync(body);
-      setId(user.id);
+      setUser({ id: user.id, nickname: user.nickname || null });
       await navigate({ to: '/user' });
     } catch (e) {
       console.error(e);

@@ -3,6 +3,7 @@ import { Input } from "../../components/Input/Input.tsx";
 import { Button } from "../../components/Button/Button.tsx";
 import { Title } from "../../components/Title/Title.tsx";
 import styles from './Steps.module.scss';
+import useUserStore from "../../stores/userStore.ts";
 
 interface Step1Props {
   nickname: string;
@@ -11,6 +12,12 @@ interface Step1Props {
 }
 
 export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep }) => {
+  const setUser = useUserStore(state => state.setUser);
+  const handleClick = () => {
+    setUser({ nickname });
+    handleNextStep();
+  };
+
   return (
     <div className={ styles.stepContainer }>
       <div className={ styles.stepBody }>
@@ -28,7 +35,7 @@ export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep })
       <div className={ styles.buttonContainer }>
         <Button
           label='다음'
-          onClick={ handleNextStep }
+          onClick={ handleClick }
           isDisabled={ !nickname }
         />
       </div>
