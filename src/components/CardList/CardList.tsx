@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 interface CardListProp {
   imagePath: string;
   cards: string[];
-  height: number;
+  height?: number;
   onClick: (type: any) => void
 }
 
