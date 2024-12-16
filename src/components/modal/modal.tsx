@@ -15,7 +15,7 @@ export const Modal: FC<ModalProps> = ({
 }) => {
   return createPortal(
     <div className={styles.dimmed} onClick={onClose}>
-      <div className={styles.modal}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <div className={styles.header}>
           <button type="button" onClick={onClose}>X</button>
         </div>
