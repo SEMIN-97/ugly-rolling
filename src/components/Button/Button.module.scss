@@ -1,15 +1,21 @@
+@use 'src/styles/variables';
+
 .button {
   border: none;
   outline: none;
   width: 100%;
-  color: #fff;
-  font-size: 16px;
-  padding: 12px 24px;
-  border-radius: 24px;
-  background-color: #000;
+  color: variables.$color-white;
+  font-size: variables.$font-body-md;
+  padding: variables.$spacing-3;
+  border-radius: variables.$radius-button;
+  background-color: variables.$color-black;
   cursor: pointer;
 
   &:active, &:focus {
     outline: none;
+  }
+
+  &[disabled] {
+    background-color: variables.$color-gray-600;
   }
 }

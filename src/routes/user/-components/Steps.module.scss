@@ -1,0 +1,26 @@
+@use '../../../styles/variables';
+
+.stepContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .stepBody {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .inputContainer {
+    padding: variables.$spacing-5 0;
+  }
+
+  .subTitleContainer {
+    padding: variables.$spacing-5 0 variables.$spacing-4;
+  }
+
+  .buttonContainer {
+    margin-top: auto;
+  }
+}

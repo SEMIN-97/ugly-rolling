@@ -1,12 +1,22 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createUser, fetchUsers } from "../api";
+import { createUser, fetchUserByKakaoId, updateUser } from "../api";
 import { User } from "../types/database";
-import { CreateUserRequest } from "../types/api";
+import { CreateUserRequest, UpdateUserRequest } from "../types/api";
 
-export const useFetchUsers = () => {
-  return useQuery<User[], Error>({ queryKey: ['users'], queryFn: fetchUsers });
-}
+export const useFetchUser = (kakaoId: number) => {
+  return useQuery<User | null, Error>({
+    queryKey: ['user', kakaoId],
+    queryFn: ({ queryKey }) => {
+      const [_key, id] = queryKey;
+      return fetchUserByKakaoId(id as number);
+    }
+  });
+};
 
 export const useCreateUsers = () => {
-  return useMutation<User, Error, CreateUserRequest>({ mutationFn: createUser })
-}
+  return useMutation<User, Error, CreateUserRequest>({ mutationFn: createUser });
+};
+
+export const useUpdateUser = () => {
+  return useMutation<User, Error, { id: number, user: UpdateUserRequest }>({ mutationFn: updateUser });
+};
