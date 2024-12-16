@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { Input } from "../../components/Input/Input.tsx";
-import { Button } from "../../components/Button/Button.tsx";
-import { Title } from "../../components/Title/Title.tsx";
+import { Input } from "../../../components/Input/Input.tsx";
+import { Button } from "../../../components/Button/Button.tsx";
+import { Title } from "../../../components/Title/Title.tsx";
 import styles from './Steps.module.scss';
-import useUserStore from "../../stores/userStore.ts";
+import useUserStore from "../../../stores/userStore.ts";
 
 interface Step1Props {
   nickname: string;

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Textarea } from "../../components/Textarea/Textarea.tsx";
-import { Button } from "../../components/Button/Button.tsx";
-import { Description, SubTitle, Title } from "../../components/Title/Title.tsx";
+import { Textarea } from "../../../components/Textarea/Textarea.tsx";
+import { Button } from "../../../components/Button/Button.tsx";
+import { Description, SubTitle, Title } from "../../../components/Title/Title.tsx";
 import styles from './Steps.module.scss';
 
 interface Step3Props {

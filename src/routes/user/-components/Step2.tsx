@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Button } from "../../components/Button/Button.tsx";
-import { SweaterType } from "../../types/enum";
-import { CardList } from "../../components/CardList/CardList.tsx";
-import { Description, SubTitle, Title } from "../../components/Title/Title.tsx";
+import { Button } from "../../../components/Button/Button.tsx";
+import { SweaterType } from "../../../types/enum";
+import { CardList } from "../../../components/CardList/CardList.tsx";
+import { Description, SubTitle, Title } from "../../../components/Title/Title.tsx";
 import styles from './Steps.module.scss';
 
 interface Step2Props {
