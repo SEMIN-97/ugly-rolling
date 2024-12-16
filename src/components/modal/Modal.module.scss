@@ -13,8 +13,10 @@
 .modal {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-height: 70%;
+  width: 100%;
+  min-width: 320px;
+  max-width: 500px;
+  max-height: 100%;
   padding: 24px;
   background-color: #FFF;
   box-sizing: border-box;
