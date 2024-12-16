@@ -1,5 +1,14 @@
 export enum OrnamentType {
-  SnowBall = 0,
-  Glove = 1,
-  GiftBox = 2,
+  Ball = 'ball',
+  Bell = 'bell',
+  CandyCane = 'candyCane',
+  Cookie = 'cookie',
+  Giftbox = 'Giftbox',
+  Hat = 'hat',
+  Santa = 'santa',
+  SnowBall = 'snowBall',
+  Snowflake = 'snowflake',
+  Snowman = 'snowman',
+  Socks = 'socks',
+  Star = 'star',
 }
