@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
 import { Button } from '../../components/Button/Button.tsx';
-import { ornamentList } from '../../models/ornamentList.ts';
 import { AddMessageModal } from './-components/AddMessageModal.tsx';
 import { useMessageStore } from './-stores/-messageStore.ts';
 import styles from './index.module.scss';
@@ -28,7 +27,7 @@ function RouteComponent() {
   
   const resetModalState = () => {
     setMessage('');
-    setOrnament(ornamentList[0]);
+    setOrnament(null);
   };
 
   return (
