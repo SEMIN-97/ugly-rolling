@@ -7,12 +7,13 @@ import styles from './Steps.module.scss';
 
 interface Step2Props {
   sweaterType: SweaterType;
-  setSweaterType: (type: number) => void;
+  setSweaterType: (type: SweaterType) => void;
   handleNextStep: () => void;
 }
 
 export const Step2: FC<Step2Props> = ({ sweaterType, setSweaterType, handleNextStep }) => {
-  const handleSweaterType = (index: number) => setSweaterType(index);
+  const handleSweaterType = (type: SweaterType) => setSweaterType(type);
+  const cards = Object.values(SweaterType);
 
   return (
     <div className={ styles.stepContainer }>
@@ -23,7 +24,7 @@ export const Step2: FC<Step2Props> = ({ sweaterType, setSweaterType, handleNextS
           <SubTitle bold>스웨터 선택</SubTitle>
           <Description>선택한 스웨터에 친구들의 크리스마스 장식이 달려요.</Description>
         </div>
-        <CardList count={ 3 } activeIndex={ sweaterType } height={ 100 } onClick={ handleSweaterType }></CardList>
+        <CardList imagePath={ 'sweaters/' } cards={ cards } height={ 100 } onClick={ handleSweaterType }></CardList>
       </div>
       <div className={ styles.buttonContainer }>
         <Button

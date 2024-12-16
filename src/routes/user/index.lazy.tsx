@@ -26,7 +26,7 @@ function User() {
   }, [id, navigate]);
 
   const [nickname, setNickname] = useState('');
-  const [sweaterType, setSweaterType] = useState(SweaterType.Red);
+  const [sweaterType, setSweaterType] = useState(SweaterType.Green);
   const [description, setDescription] = useState('');
   const [step, setStep] = useState(1);
 
