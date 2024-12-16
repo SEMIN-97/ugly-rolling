@@ -1,5 +1,4 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import kakaoLogin from '../../assets/login/kakao-login.png';
 import { useKakaoInit, useKakaoLogin } from "../../hooks/login";
 import { SubTitle, Title } from "../../components/Title/Title.tsx";
 import { CommonLayout } from "../../layouts/CommonLayout.tsx";
@@ -19,9 +18,7 @@ function Login() {
         <Title bold>크리스마스 스웨터 롤링페이퍼</Title>
         <SubTitle>귀여운 스웨터를 통해 메세지를 주고받아요.</SubTitle>
         <div className={ styles.buttonContainer }>
-          <button onClick={ handleKakaoLogin }>
-            <img src={ kakaoLogin }/>
-          </button>
+          <button className={ styles.loginButton } onClick={ handleKakaoLogin }></button>
         </div>
       </div>
     </CommonLayout>
