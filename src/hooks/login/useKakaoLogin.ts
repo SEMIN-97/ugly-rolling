@@ -27,18 +27,14 @@ export function useKakaoLogin() {
   const loginUser = async (response: any) => {
     try {
       const existingUser = await fetchUserByKakaoId(response.id);
-      if (existingUser) {
-        setUser({ id: existingUser.id, nickname: existingUser.nickname || null });
 
-        if (!existingUser.nickname) {
-          await navigate({ to: '/user' });
-          return;
-        }
+      if (!existingUser) return await createUser(response.id);
 
-        return await navigate({ to: '/sweater' });
-      }
+      setUser({ id: existingUser.id, nickname: existingUser.nickname || null });
 
-      await createUser(response.id);
+      if (!existingUser.nickname) return await navigate({ to: '/user' });
+
+      return await navigate({ to: '/sweater' });
     } catch (e) {
       console.error(e);
     }
