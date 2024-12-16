@@ -34,7 +34,7 @@ export function useKakaoLogin() {
 
       if (!existingUser.nickname) return await navigate({ to: '/user' });
 
-      return await navigate({ to: '/sweater' });
+      return await navigate({ to: `/sweaters/${ existingUser.id }` });
     } catch (e) {
       console.error(e);
     }
