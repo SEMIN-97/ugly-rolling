@@ -31,9 +31,10 @@ function RouteComponent() {
     setReceiver(nickname);
   };
 
-  const handleModalClose = () => {
+  const handleModalClose = (isAddMessage: boolean) => {
     setIsShowAddModal(false);
     resetModalState();
+    console.log(isAddMessage);
   };
   
   const resetModalState = () => {

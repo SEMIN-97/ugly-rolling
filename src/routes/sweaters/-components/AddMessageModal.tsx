@@ -9,7 +9,7 @@ import { SelectOrnamentStep } from './SelectOrnamentStep.tsx';
 import { InputMessageStep } from './InputMessageStep.tsx';
 
 interface AddOrnamentModalProps {
-  onClose: () => void;
+  onClose: (isAddMessage: boolean) => void;
 }
 
 export const AddMessageModal: FC<AddOrnamentModalProps> = ({
@@ -31,7 +31,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
     }
 
     setMessage(messageInput);
-    onClose();
+    onClose(true);
   };
 
   const bodyContent = ornament ? (
@@ -57,7 +57,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
     <Modal
       body={bodyContent}
       footer={footerContent}
-      onClose={onClose}
+      onClose={() => onClose(false)}
     />
   );
 };
