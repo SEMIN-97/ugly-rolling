@@ -4,6 +4,7 @@ import { Button } from "../../../components/Button/Button.tsx";
 import { Title } from "../../../components/Title/Title.tsx";
 import styles from './Steps.module.scss';
 import useUserStore from "../../../stores/userStore.ts";
+import { useNicknameValidation } from "../../../hooks/validation/useNicknameValidation.ts";
 
 interface Step1Props {
   nickname: string;
@@ -13,9 +14,17 @@ interface Step1Props {
 
 export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep }) => {
   const setUser = useUserStore(state => state.setUser);
+  const { isValid, errorMessage, validate, resetValidation } = useNicknameValidation();
+
   const handleClick = () => {
+    if (!validate(nickname)) return;
     setUser({ nickname });
     handleNextStep();
+  };
+
+  const handleInputChange = (nickname: string) => {
+    setNickname(nickname);
+    resetValidation();
   };
 
   return (
@@ -27,8 +36,10 @@ export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep })
           <Input
             placeholder='닉네임을 입력해주세요'
             value={ nickname }
-            onChange={ setNickname }
-            validate={ () => ({ maxLength: 20 }) }
+            isValid={ isValid }
+            errorMessage={ errorMessage }
+            maxLength={ 20 }
+            onChange={ handleInputChange }
           ></Input>
         </div>
       </div>
