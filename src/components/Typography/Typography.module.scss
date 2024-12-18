@@ -1,12 +1,12 @@
 @use 'src/styles/variables';
 
-.h1 {
+h1 {
   font-weight: 400;
   font-size: variables.$font-title-md;
   color: variables.$color-black;
 }
 
-.h2 {
+h2 {
   font-weight: 400;
   font-size: variables.$font-body-lg;
   color: variables.$color-black;

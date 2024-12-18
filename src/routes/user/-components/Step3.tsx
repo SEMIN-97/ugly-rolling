@@ -14,10 +14,10 @@ export const Step3: FC<Step3Props> = ({ description, setDescription, handleNextS
   return (
     <div className={ styles.stepContainer }>
       <div className={ styles.stepBody }>
-        <Typography as='h1' className='h1' bold>나의 친구들에게 보여지는</Typography>
-        <Typography as='h1' className='h1'>한마디를 남겨주세요.</Typography>
+        <Typography as='h1' bold>나의 친구들에게 보여지는</Typography>
+        <Typography as='h1'>한마디를 남겨주세요.</Typography>
         <div className={ styles.subTitleContainer }>
-          <Typography as='h2' className='h2' bold>나의 한마디</Typography>
+          <Typography as='h2' bold>나의 한마디</Typography>
           <p>자유로운 한마디를 적고 친구들의 응원을 받아봐요.</p>
         </div>
         <Textarea

@@ -15,8 +15,8 @@ function Login() {
   return (
     <CommonLayout>
       <div className={ styles.loginContainer }>
-        <Typography as='h2' className='h2' bold>크리스마스 스웨터 롤링페이퍼</Typography>
-        <Typography as='h2' className='h2'>귀여운 스웨터를 통해 메세지를 주고받아요.</Typography>
+        <Typography as='h2' bold>크리스마스 스웨터 롤링페이퍼</Typography>
+        <Typography as='h2'>귀여운 스웨터를 통해 메세지를 주고받아요.</Typography>
         <div className={ styles.buttonContainer }>
           <button className={ styles.loginButton } onClick={ handleLogin }></button>
         </div>

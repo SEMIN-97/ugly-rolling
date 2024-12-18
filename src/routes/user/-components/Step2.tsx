@@ -18,10 +18,10 @@ export const Step2: FC<Step2Props> = ({ sweaterType, setSweaterType, handleNextS
   return (
     <div className={ styles.stepContainer }>
       <div className={ styles.stepBody }>
-        <Typography as='h1' className='h1' bold>나만의 특별한 스웨터를 위해</Typography>
-        <Typography as='h1' className='h1'>스웨터 모양을 선택해주세요.</Typography>
+        <Typography as='h1' bold>나만의 특별한 스웨터를 위해</Typography>
+        <Typography as='h1'>스웨터 모양을 선택해주세요.</Typography>
         <div className={ styles.subTitleContainer }>
-          <Typography as='h2' className='h2' bold>스웨터 선택</Typography>
+          <Typography as='h2' bold>스웨터 선택</Typography>
           <p>선택한 스웨터에 친구들의 크리스마스 장식이 달려요.</p>
         </div>
         <CardList imagePath={ 'sweaters/' } cards={ cards } height={ 100 } onClick={ handleSweaterType }></CardList>
