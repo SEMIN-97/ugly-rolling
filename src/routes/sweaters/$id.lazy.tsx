@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useFetchUserById } from '../../hooks/useUsers.ts';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
 import { Button } from '../../components/Button/Button.tsx';
 import { Typography } from '../../components/Typography/Typography.tsx';
-import { AddMessageModal } from './-components/AddMessageModal.tsx';
 import { useMessageStore } from './-stores/-messageStore.ts';
+import { AddMessageModal } from './-components/AddMessageModal.tsx';
+import { DraggableOrnament } from './-components/DraggableOrnament.tsx';
 import styles from './index.module.scss';
 
 export const Route = createLazyFileRoute('/sweaters/$id')({
@@ -14,10 +15,21 @@ export const Route = createLazyFileRoute('/sweaters/$id')({
 
 function RouteComponent() {
   const { id } = Route.useParams();
+  const draggableContainerRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, error } = useFetchUserById(Number(id));
   const { setMessage, ornament, setOrnament, setReceiver } = useMessageStore();
   const [isShowAddModal, setIsShowAddModal] = useState(false);
   const [isAddMessageStep, setIsAddMessageStep] = useState(false);
+  const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
+
+  const handleImageLoad = () => {
+    if (!draggableContainerRef.current) {
+      return;
+    }
+
+    const { offsetWidth, offsetHeight } = draggableContainerRef.current;
+    setDraggableBoundary({ width: offsetWidth, height: offsetHeight });
+  };
 
   if (isLoading) {
     return <div>isLoading</div>; 
@@ -68,15 +80,23 @@ function RouteComponent() {
               <span>{ nickname }님의 한마디</span>
             </p>
           </div>
-          <div className={styles.sweaterContainer}>
-            <img src={`/src/assets/images/sweaters/${data.sweater_type}.png`} alt=""/>
+          <div
+            className={styles.sweaterContainer}
+            ref={draggableContainerRef}
+          >
+            <img
+              src={`/src/assets/images/sweaters/${data.sweater_type}.png`}
+              alt=""
+              onLoad={handleImageLoad}
+            />
             {
               isAddMessageStep && (
-                <div>
-                  <div className={styles.newOrnament}>
-                    <img src={`/src/assets/images/ornaments/${ornament}.png`} alt=""/>
-                  </div>
-                </div>
+                <DraggableOrnament
+                  boundaryWidth={draggableBoundary.width}
+                  boundaryHeight={draggableBoundary.height}
+                >
+                  <img src={`/src/assets/images/ornaments/${ornament}.png`} alt=""/>
+                </DraggableOrnament>
               )
             }
           </div>

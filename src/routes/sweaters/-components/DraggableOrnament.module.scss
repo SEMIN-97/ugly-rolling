@@ -1,0 +1,15 @@
+@use '../../../styles/variables' as *;
+
+.newOrnament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12%;
+  background-color: rgba(197, 216, 233, .5);
+  border: 2px dashed $color-primary-600;
+  cursor: grab;
+
+  img {
+    pointer-events: none;
+  }
+}
