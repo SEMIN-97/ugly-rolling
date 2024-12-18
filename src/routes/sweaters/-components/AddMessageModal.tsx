@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import { OrnamentType } from '../../../types/enum';
 import { useToastStore } from '../../../stores/toastStore.ts';
-import { ornamentList } from '../../../models/ornamentList.ts';
 import { Modal } from '../../../components/modal/modal.tsx';
 import { Button } from '../../../components/Button/Button.tsx';
 import { useMessageStore } from '../-stores/-messageStore.ts';
@@ -15,6 +14,7 @@ interface AddOrnamentModalProps {
 export const AddMessageModal: FC<AddOrnamentModalProps> = ({
   onClose
 }: AddOrnamentModalProps) => {
+  const ornamentList = Object.values(OrnamentType);
   const { ornament, setOrnament, setMessage, receiver } = useMessageStore();
   const addToast = useToastStore(state => state.addToast);
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
@@ -42,6 +42,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
     />
   ) : (
     <SelectOrnamentStep
+      ornamentList={ornamentList}
       selectedOrnament={selectedOrnament}
       setSelectedOrnament={setSelectedOrnament}
     />
