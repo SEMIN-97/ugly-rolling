@@ -15,7 +15,7 @@ export const Route = createLazyFileRoute('/sweaters/$id')({
 function RouteComponent() {
   const { id } = Route.useParams();
   const { data, isLoading, error } = useFetchUserById(Number(id));
-  const { setMessage, setOrnament, setReceiver } = useMessageStore();
+  const { setMessage, ornament, setOrnament, setReceiver } = useMessageStore();
   const [isShowAddModal, setIsShowAddModal] = useState(false);
   const [isAddMessageStep, setIsAddMessageStep] = useState(false);
 
@@ -47,6 +47,16 @@ function RouteComponent() {
     setOrnament(null);
   };
 
+  const confirmAddMessage = () => {
+    setIsAddMessageStep(false);
+    resetModalState();
+  };
+
+  const cancelAddMessage = () => {
+    setIsAddMessageStep(false);
+    resetModalState();
+  };
+
   return (
     <>
       <CommonLayout>
@@ -60,8 +70,28 @@ function RouteComponent() {
           </div>
           <div className={styles.sweaterContainer}>
             <img src={`/src/assets/images/sweaters/${data.sweater_type}.png`} alt=""/>
+            {
+              isAddMessageStep && (
+                <div>
+                  <div className={styles.newOrnament}>
+                    <img src={`/src/assets/images/ornaments/${ornament}.png`} alt=""/>
+                  </div>
+                </div>
+              )
+            }
           </div>
-          <Button label="롤링페이퍼 남기기" onClick={handleModalOpen}/>
+          <div className={styles.buttonContainer}>
+            {
+              isAddMessageStep ? (
+                <>
+                  <Button label="취소" onClick={cancelAddMessage}/>
+                  <Button label="확인" onClick={confirmAddMessage}/>
+                </>
+              ) : (
+                <Button label="롤링페이퍼 남기기" onClick={handleModalOpen}/>
+              )
+            }
+          </div>
         </div>
       </CommonLayout>
       {
