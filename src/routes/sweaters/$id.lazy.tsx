@@ -17,6 +17,7 @@ function RouteComponent() {
   const { data, isLoading, error } = useFetchUserById(Number(id));
   const { setMessage, setOrnament, setReceiver } = useMessageStore();
   const [isShowAddModal, setIsShowAddModal] = useState(false);
+  const [isAddMessageStep, setIsAddMessageStep] = useState(false);
 
   if (isLoading) {
     return <div>isLoading</div>; 
@@ -34,10 +35,13 @@ function RouteComponent() {
 
   const handleModalClose = (isAddMessage: boolean) => {
     setIsShowAddModal(false);
-    resetModalState();
-    console.log(isAddMessage);
+    setIsAddMessageStep(isAddMessage);
+
+    if (!isAddMessage) {
+      resetModalState();
+    }
   };
-  
+
   const resetModalState = () => {
     setMessage('');
     setOrnament(null);
