@@ -22,15 +22,6 @@ function RouteComponent() {
   const [isAddMessageStep, setIsAddMessageStep] = useState(false);
   const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
 
-  const handleImageLoad = () => {
-    if (!draggableContainerRef.current) {
-      return;
-    }
-
-    const { offsetWidth, offsetHeight } = draggableContainerRef.current;
-    setDraggableBoundary({ width: offsetWidth, height: offsetHeight });
-  };
-
   if (isLoading) {
     return <div>isLoading</div>; 
   }
@@ -67,6 +58,15 @@ function RouteComponent() {
   const cancelAddMessage = () => {
     setIsAddMessageStep(false);
     resetModalState();
+  };
+
+  const handleImageLoad = () => {
+    if (!draggableContainerRef.current) {
+      return;
+    }
+
+    const { offsetWidth, offsetHeight } = draggableContainerRef.current;
+    setDraggableBoundary({ width: offsetWidth, height: offsetHeight });
   };
 
   return (
