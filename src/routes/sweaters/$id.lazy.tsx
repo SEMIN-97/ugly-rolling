@@ -3,6 +3,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useFetchUserById } from '../../hooks/useUsers.ts';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
 import { Button } from '../../components/Button/Button.tsx';
+import { Typography } from '../../components/Typography/Typography.tsx';
 import { AddMessageModal } from './-components/AddMessageModal.tsx';
 import { useMessageStore } from './-stores/-messageStore.ts';
 import styles from './index.module.scss';
@@ -47,7 +48,7 @@ function RouteComponent() {
       <CommonLayout>
         <div className={styles.pageContainer}>
           <div className={styles.titleContainer}>
-            <h1>{ nickname }님의 스웨터</h1>
+            <Typography as="h1" bold>{ nickname }님의 스웨터</Typography>
             <p className={styles.description}>
               <span className={styles.badge}>WISH</span>
               <span>{ nickname }님의 한마디</span>
