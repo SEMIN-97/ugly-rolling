@@ -3,8 +3,8 @@ import styles from './Typography.module.scss';
 
 interface TypographyProps {
   children: ReactNode;
-  as?: ElementType;
-  className?: string;
+  as: ElementType;
+  className: string;
   bold?: boolean;
 }
 
