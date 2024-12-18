@@ -7,7 +7,7 @@ interface TypographyProps {
   bold?: boolean;
 }
 
-export const Typography: FC<TypographyProps> = ({ as: Tag = 'p', bold = false, children}) => {
+export const Typography: FC<TypographyProps> = ({ as: Tag, bold = false, children}) => {
   return (
     <Tag className={ bold ? styles.bold : '' }>
       { children }
