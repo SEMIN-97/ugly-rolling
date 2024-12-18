@@ -11,7 +11,7 @@ export function useKakaoLogin() {
   const setUser = useUserStore(state => state.setUser);
 
   const handleLogin = () => {
-    return kakao.Auth.getAccessToken ?
+    return kakao.Auth.getAccessToken() ?
       handleKakaoLoginRequest() :
       handleKakaoLogin();
   };
