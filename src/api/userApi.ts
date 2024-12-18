@@ -1,8 +1,14 @@
-import { supabase } from "./supabaseClient.ts";
-import { User } from "../types/database";
-import { CreateUserRequest, UpdateUserRequest } from "../types/api";
+import { supabase } from './supabaseClient.ts';
+import { User } from '../types/database';
+import { CreateUserRequest, UpdateUserRequest } from '../types/api';
 
 const TABLE_NAME = 'users';
+
+export const fetchUserById = async (id: number): Promise<User | null> => {
+  const { data, error } = await supabase.from(TABLE_NAME).select('*').eq('id', id).single();
+  if (error) throw new Error();
+  return data;
+};
 
 export const fetchUserByKakaoId = async (kakaoId: number): Promise<User | null> => {
   const { data, error } = await supabase.from(TABLE_NAME).select('*').eq('kakao_id', kakaoId).single();

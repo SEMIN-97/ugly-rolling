@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import { Textarea } from '../../../components/Textarea/Textarea.tsx';
+import { Typography } from '../../../components/Typography/Typography.tsx';
+import styles from './AddMessageModal.module.scss';
 
 interface InputMessageStepProps {
   receiver: string;
@@ -17,8 +19,8 @@ export const InputMessageStep: FC<InputMessageStepProps> = ({
   };
 
   return (
-    <>
-      <p>메시지를 작성해 주세요.</p>
+    <div className={styles.modalContents}>
+      <Typography as="p" bold>메시지를 작성해 주세요.</Typography>
       <Textarea
         value={messageInput}
         onChange={handleMessageChange}
@@ -26,6 +28,6 @@ export const InputMessageStep: FC<InputMessageStepProps> = ({
         maxLength={100}
         height={250}
       />
-    </>
+    </div>
   );
 };
