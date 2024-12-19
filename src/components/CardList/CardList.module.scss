@@ -3,16 +3,16 @@
 .cardList {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: variables.$spacing-3;
+  gap: variables.$card-gap;
 }
 
 .card {
-  border: 1px solid variables.$color-gray-500;
+  border: 1px solid variables.$color-border;
   border-radius: 4px;
 
   &:hover, &.active {
-    border-color: variables.$color-primary-900;
-    box-shadow: 0 0 5px variables.$color-primary-900;
+    border-color: variables.$color-card-active;
+    box-shadow: 0 0 5px variables.$color-card-active;
   }
 
   .image {

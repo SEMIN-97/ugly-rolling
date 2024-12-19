@@ -1,17 +1,17 @@
 @use 'src/styles/variables';
 
 h1 {
-  font-weight: 400;
-  font-size: variables.$font-title-md;
+  font-weight: variables.$font-weight;
+  font-size: variables.$font-h1;
   color: variables.$color-black;
 }
 
 h2 {
-  font-weight: 400;
-  font-size: variables.$font-body-lg;
+  font-weight: variables.$font-weight;
+  font-size: variables.$font-h1;
   color: variables.$color-black;
 }
 
 .bold {
-  font-weight: 700;
+  font-weight: variables.$font-weight-bold;
 }
