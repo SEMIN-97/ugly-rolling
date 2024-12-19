@@ -11,7 +11,7 @@
 .input {
   width: 100%;
   min-width: 320px;
-  font-size: variables.$font-body-md;
+  font-size: variables.$font;
   border: none;
   border-bottom: 1px solid variables.$color-black;
   padding: 6px 45px 6px 0;
@@ -19,7 +19,7 @@
   &:active, &:focus {
     border: none;
     outline: none;
-    border-bottom: 1px solid variables.$color-black;
+    border-bottom: 1px solid variables.$color-active;
   }
 
   &.error {
@@ -27,15 +27,15 @@
   }
 
   &::placeholder {
-    color: variables.$color-gray-500;
+    color: variables.$color-placeholder;
   }
 }
 
 .length {
   position: absolute;
   right: 0;
-  color: variables.$color-gray-500;
-  font-size: variables.$font-body-md;
+  color: variables.$color-placeholder;
+  font-size: variables.$font;
 }
 
 .errorMessage {

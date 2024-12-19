@@ -1,3 +1,4 @@
+// Reference Token
 $color-text: #000;
 $color-black: #000;
 $color-white: #FFF;
@@ -32,6 +33,9 @@ $font-body-md: 16px;
 $font-body-sm: 14px;
 $font-button-md: 16px;
 
+$font-weight: 400;
+$font-weight-bold: 700;
+
 $radius-sm: 4px;
 $radius-md: 8px;
 $radius-full: 100vh;
@@ -44,3 +48,27 @@ $spacing-4: 16px;
 $spacing-5: 32px;
 $spacing-6: 40px;
 $spacing-7: 48px;
+
+// Component Token
+$device-min-width: 320px;
+$device-max-width: 600px;
+$device-content-max-height: 600px;
+
+$font: $font-body-md;
+$font-h1: $font-title-md;
+$font-h2: $font-body-lg;
+$font-button: $font-body-md;
+
+$color-active: $color-black;
+$color-button-disabled: $color-gray-600;
+$color-placeholder: $color-gray-500;
+$color-border: $color-gray-500;
+$color-card-active: $color-primary-900;
+
+$card-gap: $spacing-3; // cardList의 item 간의 간격
+
+$component-button-min-gap: $spacing-4; // component와 button 사이의 최소 세로 간격
+$components-vertical-gap: $spacing-5; // component 간의 세로 간격
+$component-horizontal-padding: $spacing-4; // component의 가로 padding
+
+$textarea-padding: $spacing-3; // textarea의 전체 padding

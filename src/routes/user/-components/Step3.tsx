@@ -25,7 +25,7 @@ export const Step3: FC<Step3Props> = ({ description, setDescription, handleNextS
           value={ description }
           onChange={ (value) => setDescription(value) }
           maxLength={ 100 }
-          height={ 150 }
+          height={ 200 }
         ></Textarea>
       </div>
       <div className={ styles.buttonContainer }>

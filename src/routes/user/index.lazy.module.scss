@@ -2,5 +2,6 @@
 
 .userContainer {
   height: 100%;
+  max-height: variables.$device-content-max-height;
   margin: auto 0;
 }
