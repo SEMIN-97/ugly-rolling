@@ -125,6 +125,25 @@ function RouteComponent() {
               onLoad={handleImageLoad}
             />
             {
+              data.ornaments?.length && (
+                data.ornaments.map(({ ornamentType, positionX, positionY }) => (
+                  <button
+                    className={styles.ornament}
+                    key={`${ornamentType}${positionX}${positionY}`}
+                    style={{
+                      top: positionX,
+                      left: positionY
+                    }}
+                  >
+                    <img
+                      src={`/src/assets/images/ornaments/${ornamentType}.png`}
+                      alt=""
+                    />
+                  </button>
+                ))
+              )
+            }
+            {
               isAddMessageStep && (
                 <DraggableOrnament
                   position={position}

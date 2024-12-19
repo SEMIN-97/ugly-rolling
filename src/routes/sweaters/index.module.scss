@@ -34,6 +34,11 @@
     user-select: none;
     pointer-events: none;
   }
+
+  .ornament {
+    position: absolute;
+    width: 12%;
+  }
 }
 
 .buttonContainer {
