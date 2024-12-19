@@ -24,7 +24,7 @@ export const Step2: FC<Step2Props> = ({ sweaterType, setSweaterType, handleNextS
           <Typography as='h2' bold>스웨터 선택</Typography>
           <p>선택한 스웨터에 친구들의 크리스마스 장식이 달려요.</p>
         </div>
-        <CardList imagePath={ 'sweaters/' } cards={ cards } height={ 100 } onClick={ handleSweaterType }></CardList>
+        <CardList imagePath={ 'sweaters/' } cards={ cards } onClick={ handleSweaterType }></CardList>
       </div>
       <div className={ styles.buttonContainer }>
         <Button
