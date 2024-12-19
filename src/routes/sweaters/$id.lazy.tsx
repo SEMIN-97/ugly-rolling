@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { createLazyFileRoute } from '@tanstack/react-router';
+import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { Ornament } from '../../types/database';
 import { UpdateUserRequest } from '../../types/api';
 import useUserStore from '../../stores/userStore.ts';
@@ -20,6 +20,7 @@ export const Route = createLazyFileRoute('/sweaters/$id')({
 function RouteComponent() {
   const { id } = Route.useParams();
   const draggableContainerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const { data, isLoading, error } = useFetchUserById(Number(id));
   const { user } = useUserStore();
   const { addToast } = useToastStore();
@@ -60,6 +61,11 @@ function RouteComponent() {
 
   const confirmAddMessage = async () => {
     try {
+      if (!user.id || !user.nickname) {
+        addToast({ message: '로그인이 필요한 서비스입니다.' });
+        return await navigate({ to: '/login' });
+      }
+
       const newOrnament: Ornament = {
         ornamentType: ornament!,
         content: message,
