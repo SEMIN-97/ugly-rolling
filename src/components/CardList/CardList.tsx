@@ -4,13 +4,13 @@ import { FC, useState } from "react";
 interface CardListProp {
   imagePath: string;
   cards: string[];
-  height: number;
+  height?: number;
   onClick: (type: any) => void
 }
 
 export const CardList: FC<CardListProp> = ({ imagePath, cards, height, onClick }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const imagePathPrefix = 'src/assets/images/';
+  const imagePathPrefix = '/src/assets/images/';
 
   const handleClick = (index: number, type: string) => {
     setActiveIndex(index);

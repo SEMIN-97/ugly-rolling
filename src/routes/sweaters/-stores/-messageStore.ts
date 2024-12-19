@@ -3,7 +3,7 @@ import { OrnamentType } from '../../../types/enum';
 
 interface MessageState {
   ornament: OrnamentType | null;
-  setOrnament: (ornament: OrnamentType) => void;
+  setOrnament: (ornament: OrnamentType | null) => void;
   message: string;
   setMessage: (message: string) => void;
   receiver: string;
@@ -12,7 +12,7 @@ interface MessageState {
 
 export const useMessageStore = create<MessageState>(set => ({
   ornament: null,
-  setOrnament: (ornament: OrnamentType) => set({ ornament }),
+  setOrnament: (ornament: OrnamentType | null) => set({ ornament }),
   message: '',
   setMessage: (message: string) => set({ message }),
   receiver: '',

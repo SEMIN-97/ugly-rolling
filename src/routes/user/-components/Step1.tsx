@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Input } from "../../../components/Input/Input.tsx";
 import { Button } from "../../../components/Button/Button.tsx";
-import { Title } from "../../../components/Title/Title.tsx";
+import { Typography } from "../../../components/Typography/Typography.tsx";
 import styles from './Steps.module.scss';
 import useUserStore from "../../../stores/userStore.ts";
 import { useNicknameValidation } from "../../../hooks/validation/useNicknameValidation.ts";
@@ -30,8 +30,8 @@ export const Step1: FC<Step1Props> = ({ nickname, setNickname, handleNextStep })
   return (
     <div className={ styles.stepContainer }>
       <div className={ styles.stepBody }>
-        <Title bold>반가워요! 🎅</Title>
-        <Title bold>친구들에게 어떻게 불리나요?</Title>
+        <Typography as='h1' bold>반가워요! 🎅</Typography>
+        <Typography as='h1' bold>친구들에게 어떻게 불리나요?</Typography>
         <div className={ styles.inputContainer }>
           <Input
             placeholder='닉네임을 입력해주세요'
