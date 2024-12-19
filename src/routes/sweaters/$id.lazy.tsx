@@ -27,6 +27,7 @@ function RouteComponent() {
   const [isShowAddModal, setIsShowAddModal] = useState(false);
   const [isAddMessageStep, setIsAddMessageStep] = useState(false);
   const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const { mutateAsync } = useUpdateUser();
   
   if (isLoading) {
@@ -120,6 +121,8 @@ function RouteComponent() {
             {
               isAddMessageStep && (
                 <DraggableOrnament
+                  position={position}
+                  onPositionChange={setPosition}
                   boundaryWidth={draggableBoundary.width}
                   boundaryHeight={draggableBoundary.height}
                 >

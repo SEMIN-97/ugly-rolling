@@ -2,18 +2,21 @@ import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './DraggableOrnament.module.scss';
 
 interface DraggableOrnamentProp {
+  position: { x: number; y: number; };
+  onPositionChange: (position: { x: number; y: number }) => void;
   boundaryWidth: number;
   boundaryHeight: number;
   children: ReactNode;
 }
 
 export const DraggableOrnament: FC<DraggableOrnamentProp> = ({
+  position,
+  onPositionChange,
   boundaryWidth,
   boundaryHeight,
   children
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const startPosition = useRef({ x: 0, y: 0 });
 
@@ -26,11 +29,11 @@ export const DraggableOrnament: FC<DraggableOrnamentProp> = ({
     const newX = moveX - startPosition.current.x;
     const newY = moveY - startPosition.current.y;
 
-    setPosition({
+    onPositionChange({
       x: Math.max(0, Math.min(newX, boundaryWidth - (elementRef.current?.offsetWidth || 0))),
       y: Math.max(0, Math.min(newY, boundaryHeight - (elementRef.current?.offsetHeight || 0))),
     });
-  }, [boundaryHeight, boundaryWidth, isDragging]);
+  }, [boundaryHeight, boundaryWidth, isDragging, onPositionChange]);
 
   const handleStartMouse = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
