@@ -69,11 +69,11 @@ function RouteComponent() {
       const newOrnament: Ornament = {
         ornamentType: ornament!,
         content: message,
-        positionX: 0,
-        positionY: 0,
+        positionX: `${((position.x / draggableBoundary.width) * 100).toFixed(2)}%`,
+        positionY: `${((position.y / draggableBoundary.height) * 100).toFixed(2)}%`,
         author: {
-          id: user.id!,
-          nickname: user.nickname!
+          id: user.id,
+          nickname: user.nickname
         }
       };
 
