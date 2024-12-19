@@ -26,5 +26,22 @@
 }
 
 .sweaterContainer {
+  position: relative;
   background-color: lightgray;
+
+  > img {
+    touch-action: none;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .ornament {
+    position: absolute;
+    width: 12%;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: $spacing-2;
 }
