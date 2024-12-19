@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { useFetchUserById } from '../../hooks/useUsers.ts';
+import { Ornament } from '../../types/database';
+import { UpdateUserRequest } from '../../types/api';
+import useUserStore from '../../stores/userStore.ts';
+import { useToastStore } from '../../stores/toastStore.ts';
+import { useFetchUserById, useUpdateUser } from '../../hooks/useUsers.ts';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
 import { Button } from '../../components/Button/Button.tsx';
 import { Typography } from '../../components/Typography/Typography.tsx';
@@ -17,11 +21,14 @@ function RouteComponent() {
   const { id } = Route.useParams();
   const draggableContainerRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, error } = useFetchUserById(Number(id));
-  const { setMessage, ornament, setOrnament, setReceiver } = useMessageStore();
+  const { user } = useUserStore();
+  const { addToast } = useToastStore();
+  const { message, setMessage, ornament, setOrnament, setReceiver } = useMessageStore();
   const [isShowAddModal, setIsShowAddModal] = useState(false);
   const [isAddMessageStep, setIsAddMessageStep] = useState(false);
   const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
-
+  const { mutateAsync } = useUpdateUser();
+  
   if (isLoading) {
     return <div>isLoading</div>; 
   }
@@ -50,16 +57,37 @@ function RouteComponent() {
     setOrnament(null);
   };
 
-  const confirmAddMessage = () => {
-    setIsAddMessageStep(false);
-    resetModalState();
+  const confirmAddMessage = async () => {
+    try {
+      const newOrnament: Ornament = {
+        ornamentType: ornament!,
+        content: message,
+        positionX: 0,
+        positionY: 0,
+        author: {
+          id: user.id!,
+          nickname: user.nickname!
+        }
+      };
+
+      const updateData: UpdateUserRequest = {
+        ornaments: data.ornaments ? [...data.ornaments, newOrnament] : [newOrnament]
+      };
+
+      await mutateAsync({ id, user: updateData });
+      setIsAddMessageStep(false);
+      resetModalState();
+    } catch (e) {
+      addToast({ message: '메시지 추가에 실패했습니다.' });
+      console.error(e);
+    }
   };
 
   const cancelAddMessage = () => {
     setIsAddMessageStep(false);
     resetModalState();
   };
-
+  
   const handleImageLoad = () => {
     if (!draggableContainerRef.current) {
       return;
