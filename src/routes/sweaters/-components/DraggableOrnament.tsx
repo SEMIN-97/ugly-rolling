@@ -75,7 +75,7 @@ export const DraggableOrnament: FC<DraggableOrnamentProp> = ({
 
   return (
     <div
-      className={styles.newOrnament}
+      className={styles.draggableOrnament}
       ref={elementRef}
       onMouseDown={handleStartMouse}
       onTouchStart={handleStartTouch}

@@ -90,7 +90,7 @@ function RouteComponent() {
     }
   };
 
-  const cancelAddMessage = () => {
+  const closeAddMessage = () => {
     setIsAddMessageStep(false);
     resetModalState();
   };
@@ -160,7 +160,7 @@ function RouteComponent() {
             {
               isAddMessageStep ? (
                 <>
-                  <Button label="취소" onClick={cancelAddMessage}/>
+                  <Button label="취소" onClick={closeAddMessage}/>
                   <Button label="확인" onClick={confirmAddMessage}/>
                 </>
               ) : (
