@@ -1,4 +1,4 @@
-import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './DraggableOrnament.module.scss';
 
 interface DraggableOrnamentProp {
@@ -19,6 +19,19 @@ export const DraggableOrnament: FC<DraggableOrnamentProp> = ({
   const elementRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const startPosition = useRef({ x: 0, y: 0 });
+  const elementSize = useRef({ width: 0, height: 0 });
+
+  useLayoutEffect(() => {
+    if (!elementRef.current) {
+      return;
+    }
+
+    elementSize.current = {
+      width: elementRef.current.offsetWidth || 0,
+      height: elementRef.current.offsetHeight || 0,
+    };
+  }, []);
+
 
   const handleMove = useCallback((e: MouseEvent | TouchEvent) => {
     if (!isDragging) return;
@@ -30,8 +43,8 @@ export const DraggableOrnament: FC<DraggableOrnamentProp> = ({
     const newY = moveY - startPosition.current.y;
 
     onPositionChange({
-      x: Math.max(0, Math.min(newX, boundaryWidth - (elementRef.current?.offsetWidth || 0))),
-      y: Math.max(0, Math.min(newY, boundaryHeight - (elementRef.current?.offsetHeight || 0))),
+      x: Math.max(0, Math.min(newX, boundaryWidth - elementSize.current.width)),
+      y: Math.max(0, Math.min(newY, boundaryHeight - elementSize.current.height)),
     });
   }, [boundaryHeight, boundaryWidth, isDragging, onPositionChange]);
 
