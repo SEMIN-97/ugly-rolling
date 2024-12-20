@@ -13,11 +13,11 @@
   }
 
   .inputContainer {
-    padding: variables.$spacing-5 0;
+    padding: variables.$components-vertical-gap 0;
   }
 
   .subTitleContainer {
-    padding: variables.$spacing-5 0 variables.$spacing-4;
+    padding: variables.$components-vertical-gap 0 variables.$component-button-min-gap;
   }
 
   .buttonContainer {

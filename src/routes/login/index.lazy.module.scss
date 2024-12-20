@@ -8,7 +8,7 @@
   align-items: center;
 
   .buttonContainer {
-    padding: variables.$spacing-4 0;
+    padding: variables.$component-button-min-gap 0;
 
     .loginButton {
       width: 300px;
