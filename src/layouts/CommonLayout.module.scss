@@ -4,7 +4,8 @@
   min-width: 320px;
   max-width: 600px;
   min-height: 100%;
+  height: 100vh;
   margin: 0 auto;
   background-color: $color-white;
-  padding: $spacing-6 $spacing-4;
+  padding: $spacing-6 $component-horizontal-padding;
 }

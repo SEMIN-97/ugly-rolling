@@ -8,19 +8,19 @@
 .textarea {
   width: 100%;
   height: 100%;
-  padding: variables.$spacing-3 10px;
+  padding: variables.$textarea-padding;
   border: 1px solid variables.$color-gray-400;
   font-size: variables.$font-body-sm;
   box-sizing: border-box;
   resize: none;
 
   &:active, &:focus {
-    border-color: variables.$color-black;
+    border-color: variables.$color-active;
     outline: none;
   }
 
   &::placeholder {
-    color: variables.$color-gray-500;
+    color: variables.$color-placeholder;
   }
 }
 
@@ -29,5 +29,5 @@
   bottom: variables.$spacing-3;
   right: 10px;
   font-size: variables.$font-body-sm;
-  color: variables.$color-gray-500;
+  color: variables.$color-placeholder;
 }
