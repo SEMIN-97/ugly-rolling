@@ -5,7 +5,7 @@
   outline: none;
   width: 100%;
   color: variables.$color-white;
-  font-size: variables.$font-button;
+  font-size: $font-size-button;
   padding: variables.$spacing-3;
   border-radius: variables.$radius-button;
   background-color: variables.$color-active;

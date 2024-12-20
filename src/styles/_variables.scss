@@ -54,10 +54,10 @@ $device-min-width: 320px;
 $device-max-width: 600px;
 $device-content-max-height: 600px;
 
-$font: $font-body-md;
-$font-h1: $font-title-md;
-$font-h2: $font-body-lg;
-$font-button: $font-body-md;
+$font-size-base: $font-body-md;
+$font-size-h1: $font-title-md;
+$font-size-h2: $font-body-lg;
+$font-size-button: $font-body-md;
 
 $color-active: $color-black;
 $color-button-disabled: $color-gray-600;

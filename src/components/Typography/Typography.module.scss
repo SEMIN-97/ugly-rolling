@@ -2,13 +2,13 @@
 
 h1 {
   font-weight: variables.$font-weight;
-  font-size: variables.$font-h1;
+  font-size: $font-size-h1;
   color: variables.$color-black;
 }
 
 h2 {
   font-weight: variables.$font-weight;
-  font-size: variables.$font-h1;
+  font-size: $font-size-h1;
   color: variables.$color-black;
 }
 
