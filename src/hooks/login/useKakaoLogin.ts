@@ -3,6 +3,7 @@ import { CreateUserRequest } from "../../types/api";
 import useUserStore from "../../stores/userStore.ts";
 import { useNavigate } from "@tanstack/react-router";
 import { fetchUserByKakaoId } from "../../api";
+import { initializeKakao } from "./useKakaoInit.ts";
 
 export function useKakaoLogin() {
   const kakao = (window as any).Kakao;
@@ -11,9 +12,8 @@ export function useKakaoLogin() {
   const setUser = useUserStore(state => state.setUser);
 
   const handleLogin = () => {
-    return kakao.Auth.getAccessToken() ?
-      handleKakaoLoginRequest() :
-      handleKakaoLogin();
+    const accessToken = kakao.Auth.getAccessToken();
+    return accessToken ? handleKakaoLoginRequest() : handleKakaoLogin();
   };
 
   const handleKakaoLogin = () => {
@@ -28,7 +28,20 @@ export function useKakaoLogin() {
     kakao.API.request({
       url: '/v2/user/me',
       success: async (response: any) => await loginUser(response),
-      fail: (e: Error) => console.error("Kakao API request failed:", e),
+      fail: (e: Error) => {
+        handleKakaoLogout();
+        console.error("Kakao API request failed:", e);
+      },
+    });
+  };
+
+  const handleKakaoLogout = () => {
+    initializeKakao();
+
+    kakao.Auth.logout(() => {
+      kakao.cleanup();
+      initializeKakao();
+      handleLogin();
     });
   };
 
@@ -61,3 +74,4 @@ export function useKakaoLogin() {
 
   return { handleLogin };
 }
+
