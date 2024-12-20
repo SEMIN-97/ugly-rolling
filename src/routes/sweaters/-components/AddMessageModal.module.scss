@@ -1,7 +1,7 @@
-@use '../../../styles/variables' as *;
+@use '../../../styles/variables';
 
 .modalContents {
   display: flex;
   flex-direction: column;
-  gap: $spacing-4;
+  gap: variables.$modal-vertical-gap;
 }

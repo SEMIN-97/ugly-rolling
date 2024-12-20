@@ -67,8 +67,13 @@ $color-card-active: $color-primary-900;
 
 $card-gap: $spacing-3; // cardList의 item 간의 간격
 
+$page-title-vertical-gap: $spacing-2; // title과 description의 세로 간격
+
 $component-button-min-gap: $spacing-4; // component와 button 사이의 최소 세로 간격
+$component-button-spacing: $spacing-2; // 2개 이상의 버튼이 있는 경우, 그 버튼 간의 사이 간격
 $components-vertical-gap: $spacing-5; // component 간의 세로 간격
 $component-horizontal-padding: $spacing-4; // component의 가로 padding
+
+$modal-vertical-gap: $spacing-4; // modal 내 요소 간의 세로 간격
 
 $textarea-padding: $spacing-3; // textarea의 전체 padding
