@@ -46,12 +46,13 @@ function RouteComponent() {
   };
 
   const handleModalClose = (isAddMessage: boolean) => {
-    setIsShowAddModal(false);
-    setIsAddMessageStep(isAddMessage);
-
-    if (!isAddMessage) {
-      resetModalState();
+    if (isAddMessage) {
+      setIsShowAddModal(false);
+      setIsAddMessageStep(isAddMessage);
+      return;
     }
+
+    closeAddMessage();
   };
 
   const resetModalState = () => {
