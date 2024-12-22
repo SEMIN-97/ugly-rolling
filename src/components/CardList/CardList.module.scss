@@ -11,8 +11,7 @@
   border-radius: 4px;
 
   &:hover, &.active {
-    border-color: variables.$color-card-active;
-    box-shadow: 0 0 5px variables.$color-card-active;
+    background-color: variables.$color-secondary-100;
   }
 
   .image {

@@ -32,14 +32,14 @@
   display: flex;
   align-items: center;
   gap: variables.$card-gap;
+  font-size: variables.$font-body-sm;
 
   .imageContainer {
     width: 20%;
     padding: variables.$spacing-2;
+    background-color: variables.$color-secondary-100;
     border-radius: variables.$radius-md;
-    background-color: variables.$color-primary-100;
-    img {
-    }
+    border: 1px solid variables.$color-gray-400;
   }
 }
 
