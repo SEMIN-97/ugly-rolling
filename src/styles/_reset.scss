@@ -20,6 +20,10 @@ body {
   overflow: auto;
   font-size: $font-size-base;
   color: $color-gray-700;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 ol, ul {
