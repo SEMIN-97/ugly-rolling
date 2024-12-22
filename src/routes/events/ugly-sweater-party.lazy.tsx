@@ -106,7 +106,7 @@ function UglySweaterParty() {
             </p>
           </div>
           <div className={styles.sweaterContainer}>
-            <img src={`/src/assets/images/sweaters/${data.sweater_type}.png`} alt="" />
+            <img src={`/assets/images/sweaters/${data.sweater_type}.png`} alt="" />
             {
               data.ornaments?.length && (
                 data.ornaments.map((ornament, index) => (
@@ -116,7 +116,7 @@ function UglySweaterParty() {
                     onClick={() => handleViewModalOpen(ornament)}
                   >
                     <img
-                      src={`/src/assets/images/ornaments/${ornament.ornamentType}.png`}
+                      src={`/assets/images/ornaments/${ornament.ornamentType}.png`}
                       alt=""
                     />
                   </button>

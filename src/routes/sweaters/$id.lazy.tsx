@@ -121,7 +121,7 @@ function RouteComponent() {
             ref={draggableContainerRef}
           >
             <img
-              src={`/src/assets/images/sweaters/${data.sweater_type}.png`}
+              src={`/assets/images/sweaters/${data.sweater_type}.png`}
               alt=""
               onLoad={handleImageLoad}
             />
@@ -137,7 +137,7 @@ function RouteComponent() {
                     }}
                   >
                     <img
-                      src={`/src/assets/images/ornaments/${ornamentType}.png`}
+                      src={`/assets/images/ornaments/${ornamentType}.png`}
                       alt=""
                     />
                   </button>
@@ -152,7 +152,7 @@ function RouteComponent() {
                   boundaryWidth={draggableBoundary.width}
                   boundaryHeight={draggableBoundary.height}
                 >
-                  <img src={`/src/assets/images/ornaments/${ornament}.png`} alt=""/>
+                  <img src={`/assets/images/ornaments/${ornament}.png`} alt=""/>
                 </DraggableOrnament>
               )
             }

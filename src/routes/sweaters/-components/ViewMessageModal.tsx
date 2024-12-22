@@ -18,7 +18,7 @@ export const ViewMessageModal: FC<ViewMessageModalProps> = ({
     <div className={styles.inputContainer}>
       <div className={styles.messageInfo}>
         <div className={styles.imageContainer}>
-          <img src={`/src/assets/images/ornaments/${ornament.ornamentType}.png`} alt="" />
+          <img src={`/assets/images/ornaments/${ornament.ornamentType}.png`} alt="" />
         </div>
         <Typography as="p" bold>From. <br/>{ornament.author.nickname}</Typography>
       </div>

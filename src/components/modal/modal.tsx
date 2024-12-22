@@ -21,7 +21,7 @@ export const Modal: FC<ModalProps> = ({
             type="button"
             className={styles.closeButton}
             onClick={onClose}>
-              <img src="/src/assets/images/close.png" alt="닫기 버튼" />
+              <img src="/assets/images/close.png" alt="닫기 버튼" />
           </button>
         </div>
         <div className={styles.body}>
