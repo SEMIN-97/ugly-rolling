@@ -19,7 +19,7 @@ export const SelectOrnamentStep: FC<SelectOrnamentStepProps> = ({
   };
 
   return (
-    <div className={styles.modalContents}>
+    <div className={styles.inputContainer}>
       <Typography as="p" bold>장식을 골라주세요.</Typography>
       <ul>
         {
