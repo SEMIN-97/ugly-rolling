@@ -9,6 +9,7 @@ interface InputMessageStepProps {
   setMessageInput: (message: string) => void;
   nickname: string;
   setNickname: (nickname: string) => void;
+  messagePlaceholder?: string;
 }
 
 export const InputMessageStep: FC<InputMessageStepProps> = ({
@@ -17,6 +18,7 @@ export const InputMessageStep: FC<InputMessageStepProps> = ({
   setMessageInput,
   nickname,
   setNickname,
+  messagePlaceholder
 }) => {
   const handleMessageChange = (value: string) => {
     setMessageInput(value);
@@ -33,7 +35,7 @@ export const InputMessageStep: FC<InputMessageStepProps> = ({
         <Textarea
           value={messageInput}
           onChange={handleMessageChange}
-          placeholder={`${receiver}님에게 하고싶은 말이나 응원의 메시지를 남겨주세요.`}
+          placeholder={messagePlaceholder || `${receiver}님에게 하고싶은 말이나 응원의 메시지를 남겨주세요.`}
           maxLength={100}
           height={250}
         />

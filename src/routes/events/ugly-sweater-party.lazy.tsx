@@ -117,7 +117,7 @@ function UglySweaterParty() {
         </div>
       </CommonLayout>
       {
-        isShowAddModal && <AddMessageModal onClose={handleModalClose}/>
+        isShowAddModal && <AddMessageModal onClose={handleModalClose} messagePlaceholder="파티에 참석한 소감이나 신년 소망 등 자유롭게 작성해주세요."/>
       }
     </>
   );

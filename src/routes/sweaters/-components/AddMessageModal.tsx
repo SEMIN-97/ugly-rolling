@@ -9,10 +9,12 @@ import { InputMessageStep } from './InputMessageStep.tsx';
 
 interface AddOrnamentModalProps {
   onClose: (isAddMessage: boolean) => void;
+  messagePlaceholder?: string;
 }
 
 export const AddMessageModal: FC<AddOrnamentModalProps> = ({
-  onClose
+  onClose,
+  messagePlaceholder
 }: AddOrnamentModalProps) => {
   const ornamentList = Object.values(OrnamentType);
   const { ornament, setOrnament, setMessage, receiver, setAuthor } = useMessageStore();
@@ -54,6 +56,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
       receiver={receiver}
       nickname={nickname}
       setNickname={setNickname}
+      messagePlaceholder={messagePlaceholder}
     />
   ) : (
     <SelectOrnamentStep
