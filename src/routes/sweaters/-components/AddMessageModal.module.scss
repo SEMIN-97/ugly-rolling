@@ -27,3 +27,24 @@
     }
   }
 }
+
+.messageInfo {
+  display: flex;
+  align-items: center;
+  gap: variables.$card-gap;
+
+  .imageContainer {
+    width: 20%;
+    padding: variables.$spacing-2;
+    border-radius: variables.$radius-md;
+    background-color: variables.$color-primary-100;
+    img {
+    }
+  }
+}
+
+.message {
+  padding: variables.$textarea-padding;
+  border: 1px solid variables.$color-gray-400;
+  font-size: variables.$font-body-sm;
+}

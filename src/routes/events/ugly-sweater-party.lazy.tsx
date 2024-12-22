@@ -9,6 +9,7 @@ import { Button } from '../../components/Button/Button.tsx';
 import { Typography } from '../../components/Typography/Typography.tsx';
 import { useMessageStore } from '../sweaters/-stores/-messageStore.ts';
 import { AddMessageModal } from '../sweaters/-components/AddMessageModal.tsx';
+import { ViewMessageModal } from '../sweaters/-components/ViewMessageModal.tsx';
 import styles from './ugly-sweater-party.module.scss';
 
 export const Route = createLazyFileRoute('/events/ugly-sweater-party')({
@@ -22,6 +23,8 @@ function UglySweaterParty() {
   const { data, isLoading, error, refetch } = useFetchUserById(SWEATER_ID);
   const { mutateAsync } = useUpdateUser();
   const [isShowAddModal, setIsShowAddModal] = useState(false);
+  const [isShowViewModal, setIsShowViewModal] = useState(false);
+  const [selectedOrnament, setSelectedOrnament] = useState<Ornament | null>(null);
 
   if (isLoading) {
     return <div>isLoading</div>;
@@ -59,16 +62,16 @@ function UglySweaterParty() {
     }
   };
 
-  const handleModalOpen = () => {
+  const handleAddModalOpen = () => {
     setIsShowAddModal(true);
     setReceiver(nickname);
   };
 
-  const handleModalClose = async (isAddMessage: boolean) => {
-    console.log(message, author);
+  const handleAddModalClose = async (isAddMessage: boolean) => {
     if (isAddMessage) {
       await addMessage();
     }
+
     setIsShowAddModal(false);
     closeAddMessage();
   };
@@ -80,6 +83,15 @@ function UglySweaterParty() {
 
   const closeAddMessage = () => {
     resetModalState();
+  };
+  
+  const handleViewModalOpen = (ornament: Ornament) => {
+    setSelectedOrnament(ornament);
+    setIsShowViewModal(true);
+  };
+
+  const handleViewModalClose = () => {
+    setIsShowViewModal(false);
   };
 
   return (
@@ -97,13 +109,14 @@ function UglySweaterParty() {
             <img src={`/src/assets/images/sweaters/${data.sweater_type}.png`} alt="" />
             {
               data.ornaments?.length && (
-                data.ornaments.map(({ ornamentType }, index) => (
+                data.ornaments.map((ornament, index) => (
                   <button
                     className={styles.ornament}
-                    key={`${ornamentType}${index}`}
+                    key={`${ornament.ornamentType}${index}`}
+                    onClick={() => handleViewModalOpen(ornament)}
                   >
                     <img
-                      src={`/src/assets/images/ornaments/${ornamentType}.png`}
+                      src={`/src/assets/images/ornaments/${ornament.ornamentType}.png`}
                       alt=""
                     />
                   </button>
@@ -112,12 +125,15 @@ function UglySweaterParty() {
             }
           </div>
           <div className={styles.buttonContainer}>
-            <Button label="메시지 남기기" onClick={handleModalOpen}/>
+            <Button label="메시지 남기기" onClick={handleAddModalOpen}/>
           </div>
         </div>
       </CommonLayout>
       {
-        isShowAddModal && <AddMessageModal onClose={handleModalClose} messagePlaceholder="파티에 참석한 소감이나 신년 소망 등 자유롭게 작성해주세요."/>
+        isShowAddModal && <AddMessageModal onClose={handleAddModalClose} messagePlaceholder="파티에 참석한 소감이나 신년 소망 등 자유롭게 작성해주세요."/>
+      }
+      {
+        isShowViewModal && <ViewMessageModal onClose={handleViewModalClose} ornament={selectedOrnament} />
       }
     </>
   );
