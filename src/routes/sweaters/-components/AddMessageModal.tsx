@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { OrnamentType } from '../../../types/enum';
 import { useToastStore } from '../../../stores/toastStore.ts';
 import { Modal } from '../../../components/modal/modal.tsx';
@@ -19,6 +19,12 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
   const addToast = useToastStore(state => state.addToast);
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
   const [messageInput, setMessageInput] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
+
+  useEffect(() => {
+    setMessage(messageInput);
+    setAuthor(nickname);
+  }, [messageInput, nickname, setAuthor, setMessage]);
 
   const handleClickNextButton = () => {
     setOrnament(selectedOrnament);
@@ -37,6 +43,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
 
     setMessage(messageInput);
     setAuthor(nickname);
+
     onClose(true);
   };
 

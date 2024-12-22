@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { useFetchUserById } from '../../hooks/useUsers.ts';
+import { Ornament } from '../../types/database';
+import { UpdateUserRequest } from '../../types/api';
+import { useToastStore } from '../../stores/toastStore.ts';
+import { useFetchUserById, useUpdateUser } from '../../hooks/useUsers.ts';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
 import { Button } from '../../components/Button/Button.tsx';
 import { Typography } from '../../components/Typography/Typography.tsx';
@@ -14,8 +17,10 @@ export const Route = createLazyFileRoute('/events/ugly-sweater-party')({
 
 function UglySweaterParty() {
   const SWEATER_ID = 41;
-  const { setMessage, setOrnament, setReceiver } = useMessageStore();
-  const { data, isLoading, error } = useFetchUserById(SWEATER_ID);
+  const { addToast } = useToastStore();
+  const { message, setMessage, ornament, setOrnament, setReceiver, author } = useMessageStore();
+  const { data, isLoading, error, refetch } = useFetchUserById(SWEATER_ID);
+  const { mutateAsync } = useUpdateUser();
   const [isShowAddModal, setIsShowAddModal] = useState(false);
 
   if (isLoading) {
@@ -27,12 +32,43 @@ function UglySweaterParty() {
   }
 
   const nickname = data.nickname || '알 수 없음';
+
+  const addMessage = async () => {
+    try {
+      const newOrnament: Ornament = {
+        ornamentType: ornament!,
+        content: message,
+        positionX: '',
+        positionY: '',
+        author: {
+          id: 0,
+          nickname: author
+        }
+      };
+
+      const updateData: UpdateUserRequest = {
+        ornaments: data.ornaments ? [...data.ornaments, newOrnament] : [newOrnament]
+      };
+
+      await mutateAsync({ id: SWEATER_ID, user: updateData });
+      await refetch();
+      resetModalState();
+    } catch (e) {
+      addToast({ message: '메시지 추가에 실패했습니다.' });
+      console.error(e);
+    }
+  };
+
   const handleModalOpen = () => {
     setIsShowAddModal(true);
     setReceiver(nickname);
   };
 
-  const handleModalClose = () => {
+  const handleModalClose = async (isAddMessage: boolean) => {
+    console.log(message, author);
+    if (isAddMessage) {
+      await addMessage();
+    }
     setIsShowAddModal(false);
     closeAddMessage();
   };
@@ -67,7 +103,7 @@ function UglySweaterParty() {
                     key={`${ornamentType}${index}`}
                   >
                     <img
-                      src={`/src/assets/images/ornaments/${ornamentType}_shadow.png`}
+                      src={`/src/assets/images/ornaments/${ornamentType}.png`}
                       alt=""
                     />
                   </button>
