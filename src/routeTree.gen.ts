@@ -20,6 +20,9 @@ const IndexLazyImport = createFileRoute('/')()
 const UserIndexLazyImport = createFileRoute('/user/')()
 const LoginIndexLazyImport = createFileRoute('/login/')()
 const SweatersIdLazyImport = createFileRoute('/sweaters/$id')()
+const EventsUglySweaterPartyLazyImport = createFileRoute(
+  '/events/ugly-sweater-party',
+)()
 
 // Create/Update Routes
 
@@ -47,6 +50,16 @@ const SweatersIdLazyRoute = SweatersIdLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/sweaters/$id.lazy').then((d) => d.Route))
 
+const EventsUglySweaterPartyLazyRoute = EventsUglySweaterPartyLazyImport.update(
+  {
+    id: '/events/ugly-sweater-party',
+    path: '/events/ugly-sweater-party',
+    getParentRoute: () => rootRoute,
+  } as any,
+).lazy(() =>
+  import('./routes/events/ugly-sweater-party.lazy').then((d) => d.Route),
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -56,6 +69,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/events/ugly-sweater-party': {
+      id: '/events/ugly-sweater-party'
+      path: '/events/ugly-sweater-party'
+      fullPath: '/events/ugly-sweater-party'
+      preLoaderRoute: typeof EventsUglySweaterPartyLazyImport
       parentRoute: typeof rootRoute
     }
     '/sweaters/$id': {
@@ -86,6 +106,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/events/ugly-sweater-party': typeof EventsUglySweaterPartyLazyRoute
   '/sweaters/$id': typeof SweatersIdLazyRoute
   '/login': typeof LoginIndexLazyRoute
   '/user': typeof UserIndexLazyRoute
@@ -93,6 +114,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/events/ugly-sweater-party': typeof EventsUglySweaterPartyLazyRoute
   '/sweaters/$id': typeof SweatersIdLazyRoute
   '/login': typeof LoginIndexLazyRoute
   '/user': typeof UserIndexLazyRoute
@@ -101,6 +123,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/events/ugly-sweater-party': typeof EventsUglySweaterPartyLazyRoute
   '/sweaters/$id': typeof SweatersIdLazyRoute
   '/login/': typeof LoginIndexLazyRoute
   '/user/': typeof UserIndexLazyRoute
@@ -108,15 +131,27 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sweaters/$id' | '/login' | '/user'
+  fullPaths:
+    | '/'
+    | '/events/ugly-sweater-party'
+    | '/sweaters/$id'
+    | '/login'
+    | '/user'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sweaters/$id' | '/login' | '/user'
-  id: '__root__' | '/' | '/sweaters/$id' | '/login/' | '/user/'
+  to: '/' | '/events/ugly-sweater-party' | '/sweaters/$id' | '/login' | '/user'
+  id:
+    | '__root__'
+    | '/'
+    | '/events/ugly-sweater-party'
+    | '/sweaters/$id'
+    | '/login/'
+    | '/user/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  EventsUglySweaterPartyLazyRoute: typeof EventsUglySweaterPartyLazyRoute
   SweatersIdLazyRoute: typeof SweatersIdLazyRoute
   LoginIndexLazyRoute: typeof LoginIndexLazyRoute
   UserIndexLazyRoute: typeof UserIndexLazyRoute
@@ -124,6 +159,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  EventsUglySweaterPartyLazyRoute: EventsUglySweaterPartyLazyRoute,
   SweatersIdLazyRoute: SweatersIdLazyRoute,
   LoginIndexLazyRoute: LoginIndexLazyRoute,
   UserIndexLazyRoute: UserIndexLazyRoute,
@@ -140,6 +176,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/events/ugly-sweater-party",
         "/sweaters/$id",
         "/login/",
         "/user/"
@@ -147,6 +184,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/events/ugly-sweater-party": {
+      "filePath": "events/ugly-sweater-party.lazy.tsx"
     },
     "/sweaters/$id": {
       "filePath": "sweaters/$id.lazy.tsx"

@@ -1,0 +1,182 @@
+@use '../../styles/variables';
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$components-vertical-gap;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$page-title-vertical-gap;
+}
+
+.description {
+  display: flex;
+  align-items: start;
+  gap: variables.$spacing-1;
+}
+
+.badge {
+  color: #FB6767;
+  padding: 0 variables.$spacing-2;
+  background-color: #F8E4E4;
+  border-radius: variables.$radius-full;
+}
+
+.sweaterContainer {
+  position: relative;
+  background-color: lightgray;
+
+  img {
+    touch-action: none;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: variables.$component-button-spacing;
+}
+
+.ornament {
+  position: absolute;
+  width: 10%;
+
+  &:nth-of-type(1) {
+    top: 17%;
+    left: 20%;
+  }
+
+  &:nth-of-type(2) {
+    top: 12%;
+    left: 34%;
+  }
+
+  &:nth-of-type(3) {
+    top: 16%;
+    left: 48%;
+  }
+
+  &:nth-of-type(4) {
+    top: 15%;
+    left: 63%;
+  }
+
+  &:nth-of-type(5) {
+    top: 22%;
+    left: 74%;
+  }
+
+  &:nth-of-type(6) {
+    top: 31%;
+    left: 14%;
+  }
+
+  &:nth-of-type(7) {
+    top: 29%;
+    left: 30%;
+  }
+
+  &:nth-of-type(8) {
+    top: 31%;
+    left: 44%;
+  }
+
+  &:nth-of-type(9) {
+    top: 29%;
+    left: 60%;
+  }
+
+  &:nth-of-type(10) {
+    top: 37%;
+    left: 77%;
+  }
+
+  &:nth-of-type(11) {
+    top: 47%;
+    left: 8%;
+  }
+
+  &:nth-of-type(12) {
+    top: 45%;
+    left: 24%;
+  }
+
+  &:nth-of-type(13) {
+    top: 47%;
+    left: 40%;
+  }
+
+  &:nth-of-type(14) {
+    top: 43%;
+    left: 56%;
+  }
+
+  &:nth-of-type(15) {
+    top: 50%;
+    left: 70%;
+  }
+
+  &:nth-of-type(16) {
+    top: 52%;
+    left: 83%;
+  }
+
+  &:nth-of-type(17) {
+    top: 65%;
+    left: 10%;
+  }
+
+  &:nth-of-type(18) {
+    top: 58%;
+    left: 30%;
+  }
+
+  &:nth-of-type(19) {
+    top: 58%;
+    left: 50%;
+  }
+
+  &:nth-of-type(20) {
+    top: 65%;
+    left: 63%;
+  }
+
+  &:nth-of-type(21) {
+    top: 65%;
+    left: 76%;
+  }
+
+  &:nth-of-type(22) {
+    top: 70%;
+    left: 21%;
+  }
+
+  &:nth-of-type(23) {
+    top: 70%;
+    left: 40%;
+  }
+
+  &:nth-of-type(24) {
+    top: 80%;
+    left: 31%;
+  }
+
+  &:nth-of-type(25) {
+    top: 80%;
+    left: 50%;
+  }
+
+  &:nth-of-type(26) {
+    top: 82%;
+    left: 67%;
+  }
+
+  &:nth-of-type(27) {
+    top: 76%;
+    left: 84%;
+  }
+}
