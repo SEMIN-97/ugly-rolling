@@ -5,3 +5,25 @@
   flex-direction: column;
   gap: variables.$modal-vertical-gap;
 }
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-2;
+
+  input {
+    height: 50px;
+    padding: 0 variables.$textarea-padding;
+    border: 1px solid variables.$color-gray-400;
+    font-size: variables.$font-body-sm;
+
+    &:active, &:focus {
+      border-color: variables.$color-active;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: variables.$color-placeholder;
+    }
+  }
+}

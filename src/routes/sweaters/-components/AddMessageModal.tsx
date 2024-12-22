@@ -15,7 +15,7 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
   onClose
 }: AddOrnamentModalProps) => {
   const ornamentList = Object.values(OrnamentType);
-  const { ornament, setOrnament, setMessage, receiver } = useMessageStore();
+  const { ornament, setOrnament, setMessage, receiver, setAuthor } = useMessageStore();
   const addToast = useToastStore(state => state.addToast);
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
   const [messageInput, setMessageInput] = useState<string>('');
@@ -26,11 +26,17 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
 
   const handleSubmit = () => {
     if (messageInput?.length < 5) {
-      addToast({ message: '최소 5자 이상 작성해 주세요.' });
+      addToast({ message: '메시지는 최소 5자 이상 작성해 주세요.' });
+      return;
+    }
+
+    if (!nickname.length) {
+      addToast({ message: `닉네임을 입력해 주세요.` });
       return;
     }
 
     setMessage(messageInput);
+    setAuthor(nickname);
     onClose(true);
   };
 
@@ -39,6 +45,8 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
       messageInput={messageInput}
       setMessageInput={setMessageInput}
       receiver={receiver}
+      nickname={nickname}
+      setNickname={setNickname}
     />
   ) : (
     <SelectOrnamentStep
