@@ -54,7 +54,6 @@ function UglySweaterParty() {
         }
       };
 
-      console.log(position.x, draggableBoundary.width, newOrnament.positionX)
       const updateData: UpdateUserRequest = {
         ornaments: data.ornaments ? [...data.ornaments, newOrnament] : [newOrnament]
       };
