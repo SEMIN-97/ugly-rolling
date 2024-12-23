@@ -18,7 +18,6 @@ function Index() {
 
 
   useEffect(() => {
-    if (isVideoLoaded) {
       const timer = setTimeout(() => {
         setIsFadingOut(true); // 페이드 아웃 시작
       }, 1000); // 1.3초 후 페이드 아웃 시작
@@ -32,19 +31,21 @@ function Index() {
         clearTimeout(timer);
         clearTimeout(fadeOutTimer);
       };
-    }
-  }, [isVideoLoaded]); // 영상이 로드된 후에만 실행
+  }, []); // 영상이 로드된 후에만 실행
 
   return (
     <CommonLayout>
       {
         isShowSplashVideo && (
-          <img
+          <div
             className={`splashVideo ${isFadingOut ? 'fade-out' : ''}`}
+          >
+          <img
             src="/assets/splash.gif"
             onLoadedData={handleVideoLoad}
             alt=""
           />
+          </div>
         )
       }
       <h1>Index Page</h1>
