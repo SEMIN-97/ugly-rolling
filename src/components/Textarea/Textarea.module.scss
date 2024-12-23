@@ -13,6 +13,7 @@
   font-size: variables.$font-body-sm;
   box-sizing: border-box;
   resize: none;
+  vertical-align: top;
 
   &:active, &:focus {
     border-color: variables.$color-active;
