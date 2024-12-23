@@ -5,6 +5,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { routeTree } from './routeTree.gen';
 import { queryClient } from './config/queryClient.ts';
 import { ToastList } from './components/Toast/ToastList.tsx';
+import 'pretendard/dist/web/static/pretendard.css';
 import './styles/index.scss';
 
 const router = createRouter({ routeTree });
