@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Ornament } from '../../types/database';
 import { UpdateUserRequest } from '../../types/api';
@@ -10,8 +10,8 @@ import { Typography } from '../../components/Typography/Typography.tsx';
 import { useMessageStore } from '../sweaters/-stores/-messageStore.ts';
 import { AddMessageModal } from '../sweaters/-components/AddMessageModal.tsx';
 import { ViewMessageModal } from '../sweaters/-components/ViewMessageModal.tsx';
-import styles from './ugly-sweater-party.module.scss';
 import { DraggableOrnament } from '../sweaters/-components/DraggableOrnament.tsx';
+import styles from './ugly-sweater-party.module.scss';
 
 export const Route = createLazyFileRoute('/events/ugly-sweater-party')({
   component: UglySweaterParty,
@@ -30,6 +30,30 @@ function UglySweaterParty() {
   const [selectedOrnament, setSelectedOrnament] = useState<Ornament | null>(null);
   const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isShowSplashVideo, setIsShowSplashVideo] = useState<boolean>(true);
+  const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false); // 영상 로드 상태
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
+  useEffect(() => {
+    if (isVideoLoaded) {
+      const timer = setTimeout(() => {
+        setIsFadingOut(true);
+      }, 2100);
+
+      const fadeOutTimer = setTimeout(() => {
+        setIsShowSplashVideo(false);
+      }, 2400);
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(fadeOutTimer);
+      };
+    }
+  }, [isVideoLoaded]); // 영상이 로드된 후에만 실행
 
   if (isLoading) {
     return <div>isLoading</div>;
@@ -114,6 +138,19 @@ function UglySweaterParty() {
   return (
     <>
       <CommonLayout>
+        {
+          isShowSplashVideo && (
+            <div
+              className={`splashVideo ${isFadingOut ? 'fade-out' : ''}`}
+            >
+              <img
+                src="/assets/splash.gif"
+                onLoad={handleVideoLoad}
+                alt=""
+              />
+            </div>
+          )
+        }
         <div className={styles.pageContainer}>
           <div className={styles.titleContainer}>
             <Typography as="h1" bold>{nickname}님의 스웨터</Typography>
