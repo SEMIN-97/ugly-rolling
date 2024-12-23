@@ -20,12 +20,12 @@ function Index() {
   useEffect(() => {
     if (isVideoLoaded) {
       const timer = setTimeout(() => {
-        // setIsFadingOut(true); // 페이드 아웃 시작
+        setIsFadingOut(true); // 페이드 아웃 시작
       }, 1000); // 1.3초 후 페이드 아웃 시작
 
       const fadeOutTimer = setTimeout(() => {
         setIsShowSplashVideo(false); // 비디오 제거
-      }, 5300); // 페이드 아웃 후 1초 뒤에 비디오를 DOM에서 제거
+      }, 1300); // 페이드 아웃 후 1초 뒤에 비디오를 DOM에서 제거
 
       // 타이머 정리
       return () => {
@@ -39,15 +39,11 @@ function Index() {
     <CommonLayout>
       {
         isShowSplashVideo && (
-          <video
-            ref={videoRef}
+          <img
             className={`splashVideo ${isFadingOut ? 'fade-out' : ''}`}
-            src="/assets/videos/loading_screen.mp4"
-            muted
-            autoPlay
-            playsInline
-            preload="auto"
+            src="/assets/splash.gif"
             onLoadedData={handleVideoLoad}
+            alt=""
           />
         )
       }
