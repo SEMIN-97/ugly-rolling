@@ -59,8 +59,7 @@ function UglySweaterParty() {
       };
 
       await mutateAsync({ id: SWEATER_ID, user: updateData });
-      setIsAddMessageStep(false);
-      resetModalState();
+      closeAddMessage();
       await refetch();
     } catch (e) {
       addToast({ message: '메시지 추가에 실패했습니다.' });
