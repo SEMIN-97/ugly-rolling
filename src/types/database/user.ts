@@ -8,7 +8,8 @@ export interface Ornament {
   author: {
     id: number;
     nickname: string;
-  }
+  },
+  created_at: string;
 }
 
 export interface User {

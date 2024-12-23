@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Ornament } from '../../types/database';
 import { UpdateUserRequest } from '../../types/api';
+import { formatDateTime } from '../../utils/dateUtils.ts';
 import { useToastStore } from '../../stores/toastStore.ts';
 import { useFetchUserById, useUpdateUser } from '../../hooks/useUsers.ts';
 import { CommonLayout } from '../../layouts/CommonLayout.tsx';
@@ -54,7 +55,8 @@ function UglySweaterParty() {
         author: {
           id: 0,
           nickname: author
-        }
+        },
+        created_at: new Date().toISOString()
       };
 
       const updateData: UpdateUserRequest = {
@@ -188,7 +190,7 @@ function UglySweaterParty() {
                   message: ornament.content,
                   image: ornament.ornamentType,
                   nickname: ornament.author.nickname,
-                  date: 'YYYY MM DD'
+                  date: formatDateTime(ornament.created_at)
                 }))} />
               }
             </ul>
