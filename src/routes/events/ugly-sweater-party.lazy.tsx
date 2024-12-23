@@ -79,7 +79,7 @@ function UglySweaterParty() {
 
 
   const nickname = data.nickname || '알 수 없음';
-  const registeredMessageToShow = isShowAllMessage ? data.ornaments : data.ornaments?.slice(0, 3);
+  const registeredMessageToShow = (isShowAllMessage ? data.ornaments : data.ornaments?.slice(0, 3)) || [];
 
   const addMessage = async () => {
     try {
@@ -177,7 +177,7 @@ function UglySweaterParty() {
               onLoad={handleImageLoad}
             />
             {
-              data.ornaments?.length && (
+              !!data.ornaments?.length && (
                 data.ornaments.map((ornament, index) => (
                   <button
                     className={styles.ornament}
@@ -221,28 +221,36 @@ function UglySweaterParty() {
               )
             }
           </div>
-          <div className={styles.quickView}>
-            <div className={styles.title}>
-              <Typography as="h2" bold>등록된 메세지</Typography>
-            </div>
-            <ul>
-              {
-                <MessageList items={registeredMessageToShow?.map(ornament => ({
-                  message: ornament.content,
-                  image: ornament.ornamentType,
-                  nickname: ornament.author.nickname,
-                  date: formatDateTime(ornament.created_at)
-                }))} />
-              }
-            </ul>
-            <button
-              type="button"
-              className={styles.viewMore}
-              onClick={() => setIsShowAllMessage(!isShowAllMessage)}
-            >
-              {isShowAllMessage ? '접기' : '더보기'}
-            </button>
-          </div>
+          {
+            !!registeredMessageToShow.length && (
+              <div className={styles.quickView}>
+                <div className={styles.title}>
+                  <Typography as="h2" bold>등록된 메세지</Typography>
+                </div>
+                <ul>
+                  {
+                    <MessageList items={registeredMessageToShow.map(ornament => ({
+                      message: ornament.content,
+                      image: ornament.ornamentType,
+                      nickname: ornament.author.nickname,
+                      date: formatDateTime(ornament.created_at)
+                    }))} />
+                  }
+                </ul>
+                {
+                  registeredMessageToShow.length > 3 && (
+                    <button
+                      type="button"
+                      className={styles.viewMore}
+                      onClick={() => setIsShowAllMessage(!isShowAllMessage)}
+                    >
+                      {isShowAllMessage ? '접기' : '더보기'}
+                    </button>
+                  )
+                }
+              </div>
+            )
+          }
         </div>
         {
           isShowSplashVideo && (
