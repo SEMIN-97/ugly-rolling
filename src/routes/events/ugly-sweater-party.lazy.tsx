@@ -70,7 +70,7 @@ function UglySweaterParty() {
   };
 
   if (isLoading) {
-    return <div className={styles.splashVideo}></div>;
+    return <div className={styles.splashVideo} />;
   }
 
   if (error || !data) {

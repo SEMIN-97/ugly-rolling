@@ -73,6 +73,7 @@
   display: block;
   transition: .3s opacity ease-in-out;
   background-color: #0C0928;
+  font-weight: bold;
   z-index: 3;
 
   &.fadeOut {
@@ -94,7 +95,6 @@
     color: variables.$color-white;
     font-size: 60px;
     text-align: center;
-    font-weight: bold;
     line-height: 1.2;
     text-shadow: 0 0 10px #0C0928;
   }
