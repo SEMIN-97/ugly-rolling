@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { Ornament } from '../../types/database';
 import { UpdateUserRequest } from '../../types/api';
@@ -33,14 +33,39 @@ function UglySweaterParty() {
   const [selectedOrnament, setSelectedOrnament] = useState<Ornament | null>(null);
   const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isShowSplashVideo, setIsShowSplashVideo] = useState<boolean>(true);
+  const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isVideoLoaded) {
+      const timer = setTimeout(() => {
+        setIsFadingOut(true);
+      }, 2100);
+
+      const fadeOutTimer = setTimeout(() => {
+        setIsShowSplashVideo(false);
+      }, 2400);
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(fadeOutTimer);
+      };
+    }
+  }, [isVideoLoaded]);
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
 
   if (isLoading) {
-    return <div>isLoading</div>;
+    return <div className={styles.splashVideo}></div>;
   }
 
   if (error || !data) {
     return <div>404 Error</div>;
   }
+
 
   const nickname = data.nickname || '알 수 없음';
   const registeredMessageToShow = isShowAllMessage ? data.ornaments : data.ornaments?.slice(0, 3);
@@ -203,6 +228,19 @@ function UglySweaterParty() {
             </button>
           </div>
         </div>
+        {
+          isShowSplashVideo && (
+            <div
+              className={`${styles.splashVideo} ${isFadingOut ? styles.fadeOut : ''}`}
+            >
+              <img
+                src="/assets/images/splash.gif"
+                onLoad={handleVideoLoad}
+                alt=""
+              />
+            </div>
+          )
+        }
       </CommonLayout>
       {
         isShowAddModal &&
