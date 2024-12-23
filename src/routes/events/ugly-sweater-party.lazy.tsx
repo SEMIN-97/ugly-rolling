@@ -38,6 +38,8 @@ function UglySweaterParty() {
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
 
   useEffect(() => {
+    document.body.classList.add('no-scroll');
+
     if (isVideoLoaded) {
       const timer = setTimeout(() => {
         setIsFadingOut(true);
@@ -45,6 +47,7 @@ function UglySweaterParty() {
 
       const fadeOutTimer = setTimeout(() => {
         setIsShowSplashVideo(false);
+        document.body.classList.remove('no-scroll');
       }, 2400);
 
       return () => {
@@ -53,6 +56,14 @@ function UglySweaterParty() {
       };
     }
   }, [isVideoLoaded]);
+
+  useEffect(() => {
+    if (isShowAddModal || isShowViewModal) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [isShowAddModal, isShowViewModal]);
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
@@ -119,6 +130,7 @@ function UglySweaterParty() {
 
   const closeAddMessage = () => {
     setIsShowAddModal(false);
+    setIsAddMessageStep(false);
     resetModalState();
   };
   

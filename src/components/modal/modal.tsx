@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
 
@@ -13,14 +13,6 @@ export const Modal: FC<ModalProps> = ({
   footer,
   onClose
 }) => {
-  useEffect(() => {
-    document.body.classList.add('no-scroll');
-
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
-  }, []);
-
   return createPortal(
     <div className={styles.dimmed} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
