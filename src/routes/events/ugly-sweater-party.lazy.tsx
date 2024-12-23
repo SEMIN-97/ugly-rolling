@@ -55,7 +55,7 @@ function UglySweaterParty() {
       };
 
       const updateData: UpdateUserRequest = {
-        ornaments: data.ornaments ? [...data.ornaments, newOrnament] : [newOrnament]
+        ornaments: data.ornaments ? [newOrnament, ...data.ornaments] : [newOrnament]
       };
 
       await mutateAsync({ id: SWEATER_ID, user: updateData });
@@ -174,6 +174,31 @@ function UglySweaterParty() {
                 <Button label="메시지 남기기" onClick={handleAddModalOpen}/>
               )
             }
+          </div>
+          <div className={styles.quickView}>
+            <div className={styles.title}>
+              <Typography as="h2" bold>등록된 메세지</Typography>
+              <button>더보기</button>
+            </div>
+            <ul>
+              {
+                data.ornaments?.length ? (
+                  data.ornaments.slice(0, 3).map(((ornament, index) => (
+                    <li key={`${ornament.ornamentType}${index}`}>
+                      <div className={styles.imageContainer}>
+                        <img src={`/assets/images/ornaments/${ornament.ornamentType}.png`} alt=""/>
+                      </div>
+                      <div className={styles.messageContainer}>
+                        <strong>{ornament.author.nickname} <span className={styles.date}>YYYY MM DD</span></strong>
+                        <p>{ornament.content}</p>
+                      </div>
+                    </li>
+                  )))
+                ) : (
+                  <p className={styles.emptyMessage}>등록된 메세지가 없습니다</p>
+                )
+              }
+            </ul>
           </div>
         </div>
       </CommonLayout>

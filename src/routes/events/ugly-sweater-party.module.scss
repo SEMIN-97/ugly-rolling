@@ -33,6 +33,11 @@
     user-select: none;
     pointer-events: none;
   }
+
+  .ornament {
+    position: absolute;
+    width: 10%;
+  }
 }
 
 .buttonContainer {
@@ -40,7 +45,56 @@
   gap: variables.$component-button-spacing;
 }
 
-.ornament {
-  position: absolute;
-  width: 10%;
+.quickView {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-3;
+    padding-top: variables.$spacing-3;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing-3;
+  }
+
+  .title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    button {
+      text-decoration: underline;
+      font-size: variables.$font-body-sm;
+      padding: variables.$spacing-1;
+    }
+  }
+
+  .imageContainer {
+    width: 18%;
+    max-width: 80px;
+    padding: variables.$spacing-2;
+    background-color: variables.$color-primary-50;
+    border-radius: variables.$radius-md;
+  }
+
+  .messageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .date {
+      color: variables.$color-gray-400;
+      font-weight: normal;
+      font-size: variables.$font-body-sm;
+      padding-left: variables.$spacing-1;
+    }
+  }
+
+  .emptyMessage {
+    text-align: center;
+    padding: variables.$spacing-5 0;
+  }
+
 }
