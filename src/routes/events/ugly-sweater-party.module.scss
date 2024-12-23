@@ -84,4 +84,18 @@
     height: 100%;
     object-fit: cover;
   }
+
+  p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    color: variables.$color-white;
+    font-size: 60px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.2;
+    text-shadow: 0 0 10px #0C0928;
+  }
 }

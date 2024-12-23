@@ -262,6 +262,7 @@ function UglySweaterParty() {
                 onLoad={handleVideoLoad}
                 alt=""
               />
+              <p>UGLY <br/>SWEATER <br/>PARTY</p>
             </div>
           )
         }
