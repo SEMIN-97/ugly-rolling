@@ -10,8 +10,9 @@ import { Typography } from '../../components/Typography/Typography.tsx';
 import { useMessageStore } from '../sweaters/-stores/-messageStore.ts';
 import { AddMessageModal } from '../sweaters/-components/AddMessageModal.tsx';
 import { ViewMessageModal } from '../sweaters/-components/ViewMessageModal.tsx';
-import styles from './ugly-sweater-party.module.scss';
 import { DraggableOrnament } from '../sweaters/-components/DraggableOrnament.tsx';
+import { MessageList } from './-components/MessageList.tsx';
+import styles from './ugly-sweater-party.module.scss';
 
 export const Route = createLazyFileRoute('/events/ugly-sweater-party')({
   component: UglySweaterParty,
@@ -182,21 +183,13 @@ function UglySweaterParty() {
             </div>
             <ul>
               {
-                data.ornaments?.length ? (
-                  data.ornaments.slice(0, 3).map(((ornament, index) => (
-                    <li key={`${ornament.ornamentType}${index}`}>
-                      <div className={styles.imageContainer}>
-                        <img src={`/assets/images/ornaments/${ornament.ornamentType}.png`} alt=""/>
-                      </div>
-                      <div className={styles.messageContainer}>
-                        <strong>{ornament.author.nickname} <span className={styles.date}>YYYY MM DD</span></strong>
-                        <p>{ornament.content}</p>
-                      </div>
-                    </li>
-                  )))
-                ) : (
-                  <p className={styles.emptyMessage}>등록된 메세지가 없습니다</p>
-                )
+                <MessageList items={data.ornaments?.slice(0, 3).map(ornament => ({
+                  message: ornament.content,
+                  image: ornament.ornamentType,
+                  nickname: ornament.author.nickname,
+                  date: 'YYYY MM DD'
+                }))}
+              />
               }
             </ul>
           </div>
