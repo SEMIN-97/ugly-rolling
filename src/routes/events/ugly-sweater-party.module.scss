@@ -1,0 +1,46 @@
+@use '../../styles/variables';
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$components-vertical-gap;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$page-title-vertical-gap;
+}
+
+.description {
+  display: flex;
+  align-items: start;
+  gap: variables.$spacing-1;
+}
+
+.badge {
+  color: #FB6767;
+  padding: 0 variables.$spacing-2;
+  background-color: #F8E4E4;
+  border-radius: variables.$radius-full;
+}
+
+.sweaterContainer {
+  position: relative;
+
+  img {
+    touch-action: none;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: variables.$component-button-spacing;
+}
+
+.ornament {
+  position: absolute;
+  width: 10%;
+}

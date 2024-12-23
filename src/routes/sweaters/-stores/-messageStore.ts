@@ -8,6 +8,8 @@ interface MessageState {
   setMessage: (message: string) => void;
   receiver: string;
   setReceiver: (receiver: string) => void;
+  author: string;
+  setAuthor: (author: string) => void;
 }
 
 export const useMessageStore = create<MessageState>(set => ({
@@ -17,4 +19,6 @@ export const useMessageStore = create<MessageState>(set => ({
   setMessage: (message: string) => set({ message }),
   receiver: '',
   setReceiver: (receiver: string) => set({ receiver }),
+  author: '',
+  setAuthor: (author: string) => set({ author }),
 }));

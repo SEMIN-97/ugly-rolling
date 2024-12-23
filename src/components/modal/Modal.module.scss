@@ -1,3 +1,5 @@
+@use 'src/styles/variables';
+
 .dimmed {
   position: fixed;
   top: 0;
@@ -11,14 +13,16 @@
 }
 
 .modal {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   min-width: 320px;
   max-width: 500px;
   max-height: 100%;
-  padding: 24px;
+  padding: 32px 24px 24px;
   background-color: #FFF;
+  border-radius: variables.$radius-lg;
   box-sizing: border-box;
   color: #000;
 }
@@ -29,7 +33,18 @@
   justify-content: flex-end;
 }
 
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: variables.$spacing-2;
+  //background: pink;
+}
+
 .body {
   overflow: auto;
 }
 
+.footer {
+  padding-top: variables.$component-button-min-gap;
+}

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { OrnamentType } from '../../../types/enum';
 import { useToastStore } from '../../../stores/toastStore.ts';
 import { Modal } from '../../../components/modal/modal.tsx';
@@ -9,16 +9,24 @@ import { InputMessageStep } from './InputMessageStep.tsx';
 
 interface AddOrnamentModalProps {
   onClose: (isAddMessage: boolean) => void;
+  messagePlaceholder?: string;
 }
 
 export const AddMessageModal: FC<AddOrnamentModalProps> = ({
-  onClose
+  onClose,
+  messagePlaceholder
 }: AddOrnamentModalProps) => {
   const ornamentList = Object.values(OrnamentType);
-  const { ornament, setOrnament, setMessage, receiver } = useMessageStore();
+  const { ornament, setOrnament, setMessage, receiver, setAuthor } = useMessageStore();
   const addToast = useToastStore(state => state.addToast);
   const [selectedOrnament, setSelectedOrnament] = useState<OrnamentType>(ornamentList[0]);
   const [messageInput, setMessageInput] = useState<string>('');
+  const [nickname, setNickname] = useState<string>('');
+
+  useEffect(() => {
+    setMessage(messageInput);
+    setAuthor(nickname);
+  }, [messageInput, nickname, setAuthor, setMessage]);
 
   const handleClickNextButton = () => {
     setOrnament(selectedOrnament);
@@ -26,11 +34,18 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
 
   const handleSubmit = () => {
     if (messageInput?.length < 5) {
-      addToast({ message: '최소 5자 이상 작성해 주세요.' });
+      addToast({ message: '메시지는 최소 5자 이상 작성해 주세요.' });
+      return;
+    }
+
+    if (!nickname.length) {
+      addToast({ message: `닉네임을 입력해 주세요.` });
       return;
     }
 
     setMessage(messageInput);
+    setAuthor(nickname);
+
     onClose(true);
   };
 
@@ -39,6 +54,9 @@ export const AddMessageModal: FC<AddOrnamentModalProps> = ({
       messageInput={messageInput}
       setMessageInput={setMessageInput}
       receiver={receiver}
+      nickname={nickname}
+      setNickname={setNickname}
+      messagePlaceholder={messagePlaceholder}
     />
   ) : (
     <SelectOrnamentStep
