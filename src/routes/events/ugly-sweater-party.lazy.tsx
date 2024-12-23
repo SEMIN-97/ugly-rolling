@@ -28,6 +28,7 @@ function UglySweaterParty() {
   const [isShowAddModal, setIsShowAddModal] = useState(false);
   const [isShowViewModal, setIsShowViewModal] = useState(false);
   const [isAddMessageStep, setIsAddMessageStep] = useState(false);
+  const [isShowAllMessage, setIsShowAllMessage] = useState(false);
   const [selectedOrnament, setSelectedOrnament] = useState<Ornament | null>(null);
   const [draggableBoundary, setDraggableBoundary] = useState({ width: 0, height: 0 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -41,6 +42,7 @@ function UglySweaterParty() {
   }
 
   const nickname = data.nickname || '알 수 없음';
+  const registeredMessageToShow = isShowAllMessage ? data.ornaments : data.ornaments?.slice(0, 3);
 
   const addMessage = async () => {
     try {
@@ -182,7 +184,7 @@ function UglySweaterParty() {
             </div>
             <ul>
               {
-                <MessageList items={data.ornaments?.slice(0, 3).map(ornament => ({
+                <MessageList items={registeredMessageToShow?.map(ornament => ({
                   message: ornament.content,
                   image: ornament.ornamentType,
                   nickname: ornament.author.nickname,
@@ -190,7 +192,13 @@ function UglySweaterParty() {
                 }))} />
               }
             </ul>
-            <button type="button" className={styles.viewMore}>더보기</button>
+            <button
+              type="button"
+              className={styles.viewMore}
+              onClick={() => setIsShowAllMessage(!isShowAllMessage)}
+            >
+              {isShowAllMessage ? '접기' : '더보기'}
+            </button>
           </div>
         </div>
       </CommonLayout>
