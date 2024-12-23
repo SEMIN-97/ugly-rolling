@@ -58,13 +58,13 @@ function UglySweaterParty() {
   }, [isVideoLoaded]);
 
   useEffect(() => {
-    if (isShowAddModal || isShowViewModal) {
+    if ((isShowAddModal || isShowViewModal) && !isAddMessageStep) {
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
     }
-  }, [isShowAddModal, isShowViewModal]);
-
+  }, [isShowAddModal, isShowViewModal, isAddMessageStep]);
+  
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
   };
