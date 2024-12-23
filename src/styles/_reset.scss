@@ -83,3 +83,18 @@ video {
 #root {
   height: 100%;
 }
+
+.splashVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  display: block;
+  transition: .3s opacity ease-in-out;
+}
+
+.splashVideo.fade-out {
+  opacity: 0;
+}
