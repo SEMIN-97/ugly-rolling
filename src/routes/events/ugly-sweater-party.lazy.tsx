@@ -58,13 +58,13 @@ function UglySweaterParty() {
   }, [isVideoLoaded]);
 
   useEffect(() => {
-    if ((isShowAddModal || isShowViewModal) && !isAddMessageStep) {
+    if (isShowAddModal || isShowViewModal) {
       document.body.classList.add('no-scroll');
     } else {
       document.body.classList.remove('no-scroll');
     }
-  }, [isShowAddModal, isShowViewModal, isAddMessageStep]);
-  
+  }, [isShowAddModal, isShowViewModal]);
+
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
   };
@@ -117,6 +117,10 @@ function UglySweaterParty() {
     if (isAddMessage) {
       setIsShowAddModal(false);
       setIsAddMessageStep(isAddMessage);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
       return;
     }
 
