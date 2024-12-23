@@ -179,7 +179,6 @@ function UglySweaterParty() {
           <div className={styles.quickView}>
             <div className={styles.title}>
               <Typography as="h2" bold>등록된 메세지</Typography>
-              <button>더보기</button>
             </div>
             <ul>
               {
@@ -188,10 +187,10 @@ function UglySweaterParty() {
                   image: ornament.ornamentType,
                   nickname: ornament.author.nickname,
                   date: 'YYYY MM DD'
-                }))}
-              />
+                }))} />
               }
             </ul>
+            <button type="button" className={styles.viewMore}>더보기</button>
           </div>
         </div>
       </CommonLayout>

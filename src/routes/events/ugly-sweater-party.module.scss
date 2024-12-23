@@ -50,11 +50,14 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+  }
 
-    button {
-      text-decoration: underline;
-      font-size: variables.$font-body-sm;
-      padding: variables.$spacing-1;
-    }
+  .viewMore {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: variables.$spacing-3;
+    margin-top: variables.$spacing-3;
+    border-top: 1px solid variables.$color-gray-400;
   }
 }
