@@ -55,10 +55,6 @@ function UglySweaterParty() {
     }
   }, [isVideoLoaded]); // 영상이 로드된 후에만 실행
 
-  if (isLoading) {
-    return <div>isLoading</div>;
-  }
-
   if (error || !data) {
     return <div>404 Error</div>;
   }
