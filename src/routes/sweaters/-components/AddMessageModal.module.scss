@@ -47,4 +47,5 @@
   padding: variables.$textarea-padding;
   border: 1px solid variables.$color-gray-400;
   font-size: variables.$font-body-sm;
+  white-space: pre-wrap;
 }
