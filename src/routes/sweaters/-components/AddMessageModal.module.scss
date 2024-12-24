@@ -14,7 +14,7 @@
   input {
     height: 50px;
     padding: 0 variables.$textarea-padding;
-    border: 1px solid variables.$color-gray-400;
+    border: 1px solid variables.$color-border;
     font-size: variables.$font-body-sm;
 
     &:active, &:focus {
@@ -39,13 +39,13 @@
     padding: variables.$spacing-2;
     background-color: variables.$color-primary-50;
     border-radius: variables.$radius-md;
-    border: 1px solid variables.$color-gray-400;
+    border: 1px solid variables.$color-border;
   }
 }
 
 .message {
   padding: variables.$textarea-padding;
-  border: 1px solid variables.$color-gray-400;
+  border: 1px solid variables.$color-border;
   font-size: variables.$font-body-sm;
   white-space: pre-wrap;
 }
