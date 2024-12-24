@@ -9,7 +9,7 @@ ul {
 
 li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: variables.$spacing-3;
 }
 
@@ -25,6 +25,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 
   .date {
     color: variables.$color-gray-400;
