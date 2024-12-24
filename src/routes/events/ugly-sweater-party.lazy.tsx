@@ -238,7 +238,7 @@ function UglySweaterParty() {
                   }
                 </ul>
                 {
-                  registeredMessageToShow.length > 3 && (
+                  (data.ornaments && data.ornaments.length > 3) && (
                     <button
                       type="button"
                       className={styles.viewMore}
