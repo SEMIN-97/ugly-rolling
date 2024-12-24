@@ -14,6 +14,7 @@ import { ViewMessageModal } from '../sweaters/-components/ViewMessageModal.tsx';
 import { DraggableOrnament } from '../sweaters/-components/DraggableOrnament.tsx';
 import { MessageList } from './-components/MessageList.tsx';
 import styles from './ugly-sweater-party.module.scss';
+import html2canvas from 'html2canvas';
 
 export const Route = createLazyFileRoute('/events/ugly-sweater-party')({
   component: UglySweaterParty,
@@ -156,16 +157,79 @@ function UglySweaterParty() {
     setDraggableBoundary({ width: offsetWidth, height: offsetHeight });
   };
 
+  const isMobileDevice = () => {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  };
+
+  const handleCaptureAndShare = async () => {
+    if (!draggableContainerRef?.current) {
+      return;
+    }
+
+    try {
+      const canvas = await html2canvas(draggableContainerRef.current);
+      const blob = await new Promise<Blob | null>(resolve =>
+        canvas.toBlob((b) => resolve(b), 'image/png')
+      );
+
+      if (!blob) {
+        return;
+      }
+
+      return new File([blob], 'sweater.png', { type: 'image/png' });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleClickShareButton = async () => {
+    if (navigator.share && isMobileDevice()) {
+      try {
+        const file = await handleCaptureAndShare();
+
+        if (!file) {
+          return;
+        }
+
+        await navigator.share({
+          title: '어글리 크리스마스님의 스웨터',
+          text: '어글리 크리스마스님의 스웨터가 도착했어요. 스웨터에 메세지를 남겨주세요!',
+          files: [file],
+          url: window.location.href
+        });
+      } catch (error) {
+        console.error('공유 중 오류 발생:', error);
+      }
+
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      addToast({ message: '링크가 복사되었습니다.' });
+    } catch (error) {
+      console.error('공유 중 오류 발생:', error);
+    }
+  };
+
   return (
     <>
       <CommonLayout>
         <div className={styles.pageContainer}>
           <div className={styles.titleContainer}>
-            <Typography as="h1" bold>{nickname}님의 스웨터</Typography>
-            <p className={styles.description}>
-              <span className={styles.badge}>WISH</span>
-              <span>{data.description}</span>
-            </p>
+            <div>
+              <Typography as="h1" bold>{nickname}님의 스웨터</Typography>
+              <p className={styles.description}>
+                <span className={styles.badge}>WISH</span>
+                <span>{data.description}</span>
+              </p>
+            </div>
+            <button
+              type="button"
+              className={styles.shareButton}
+              onClick={handleClickShareButton}>
+              <img src="/assets/images/share.png" alt="공유하기 버튼"/>
+            </button>
           </div>
           <div
             className={styles.sweaterContainer}

@@ -8,8 +8,20 @@
 
 .titleContainer {
   display: flex;
-  flex-direction: column;
-  gap: variables.$page-title-vertical-gap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: variables.$spacing-2;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$page-title-vertical-gap;
+  }
+
+  .shareButton {
+    width: 32px;
+    padding: variables.$spacing-1;
+  }
 }
 
 .description {
