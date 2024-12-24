@@ -43,12 +43,12 @@ function UglySweaterParty() {
     if (isVideoLoaded) {
       const timer = setTimeout(() => {
         setIsFadingOut(true);
-      }, 2100);
+      }, 2700);
 
       const fadeOutTimer = setTimeout(() => {
         setIsShowSplashVideo(false);
         document.body.classList.remove('no-scroll');
-      }, 2400);
+      }, 3000);
 
       return () => {
         clearTimeout(timer);
@@ -262,7 +262,10 @@ function UglySweaterParty() {
                 onLoad={handleVideoLoad}
                 alt=""
               />
-              <p>UGLY <br/>SWEATER <br/>PARTY</p>
+              <div className={styles.text}>
+                <p>UGLY</p>
+                <p>SWEATER PARTY</p>
+              </div>
             </div>
           )
         }

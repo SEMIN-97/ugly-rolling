@@ -67,6 +67,8 @@
   top: 50%;
   left: 50%;
   width: 100vw;
+  min-width: 320px;
+  max-width: 600px;
   height: 100vh;
   object-fit: cover;
   transform: translate(-50%, -50%);
@@ -86,16 +88,25 @@
     object-fit: cover;
   }
 
-  p {
+  .text {
     position: absolute;
     top: 50%;
     left: 0;
     right: 0;
     transform: translateY(-50%);
     color: variables.$color-white;
-    font-size: 60px;
-    text-align: center;
-    line-height: 1.2;
-    text-shadow: 0 0 10px #0C0928;
+    font-size: 32px;
+    line-height: 28px;
+
+    p {
+      display: flex;
+      justify-content: center;
+      gap: variables.$spacing-1;
+
+      &:nth-child(2) {
+        font-size: 20px;
+        padding-top: variables.$spacing-1;
+      }
+    }
   }
 }
