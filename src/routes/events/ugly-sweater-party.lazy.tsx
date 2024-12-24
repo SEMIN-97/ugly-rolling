@@ -309,13 +309,13 @@ function UglySweaterParty() {
               className={`${styles.splashVideo} ${isFadingOut ? styles.fadeOut : ''}`}
             >
               <img
+                className={styles.gif}
                 src="/assets/images/splash.gif"
                 onLoad={handleVideoLoad}
                 alt=""
               />
               <div className={styles.text}>
-                <p>UGLY</p>
-                <p>SWEATER PARTY</p>
+                <img src="/assets/images/splashText.png" alt="Ugly sweater party"/>
               </div>
             </div>
           )
